@@ -4,5 +4,5 @@ class Category {
   Category(this.name);
 
   Category.fromMap(Map<String, dynamic> map)
-      : name = map["name"].toString() ?? "";
+      : name = map["name"] != null ? map["name"].toString() : "";
 }
