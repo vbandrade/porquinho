@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 enum AccountType {
   cash,
   checking,
@@ -13,7 +15,17 @@ class Account {
   Account.fromMap(Map<dynamic, dynamic> data)
       : id = data["id"] ?? "-",
         name = data["name"] ?? "sem nome",
-        type = data["type"].contains("cash")
-            ? AccountType.cash
-            : AccountType.checking;
+        type = getType(data["type"]);
+
+  @visibleForTesting
+  static AccountType getType(String text) {
+    AccountType result;
+
+    try {
+      result = text.contains("cash") ? AccountType.cash : AccountType.checking;
+    } catch (error) {
+      return AccountType.checking;
+    }
+    return result;
+  }
 }
