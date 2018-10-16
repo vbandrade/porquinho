@@ -30,17 +30,15 @@ class _NavigationBarState extends State<NavigationBar> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Expanded(
-            child: FlatButton(
-                child: Text("< $previousMonth"),
-                textColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    widget.query.add(previousMonth);
-                    _currentMonth = previousMonth;
-                  });
-                }),
-          ),
+          FlatButton(
+              child: Text("< $previousMonth"),
+              textColor: Colors.white,
+              onPressed: () {
+                setState(() {
+                  widget.query.add(previousMonth);
+                  _currentMonth = previousMonth;
+                });
+              }),
           Expanded(
             child: FlatButton(
                 child: Text(
@@ -52,17 +50,15 @@ class _NavigationBarState extends State<NavigationBar> {
                   print("$_currentMonth");
                 }),
           ),
-          Expanded(
-            child: FlatButton(
-                child: Text("$nextMonth >"),
-                textColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    widget.query.add(nextMonth);
-                    _currentMonth = nextMonth;
-                  });
-                }),
-          ),
+          FlatButton(
+              child: Text("$nextMonth >"),
+              textColor: Colors.white,
+              onPressed: () {
+                setState(() {
+                  widget.query.add(nextMonth);
+                  _currentMonth = nextMonth;
+                });
+              }),
         ],
       ),
     );
