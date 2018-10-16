@@ -7,6 +7,7 @@ class MonthlyExpensesBloc {
   Stream<List<Entry>> _getEntries() {
     return Firestore.instance
         .collection('entries')
+        .orderBy("date")
         .snapshots()
         .map((querySnapshot) {
       return querySnapshot.documents.map((documentSnapshot) {
