@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:app/src/models/entry.dart';
@@ -15,7 +13,7 @@ void main() {
         "taxi"
       ];
       Map<String, dynamic> cat = Map<String, dynamic>();
-      cat["name"] = categories[r.nextInt(categories.length)];
+      cat["name"] = "Sports";
 
       Map<String, dynamic> account = Map<String, dynamic>();
       account["name"] = "cashhh";

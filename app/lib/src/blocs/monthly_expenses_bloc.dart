@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/src/models/entry.dart';
+import 'package:intl/intl.dart';
 
 class MonthlyExpensesBloc {
   Stream<List<Entry>> get entries => _getEntries();
@@ -32,5 +33,28 @@ class MonthlyExpensesProvider extends InheritedWidget {
     return (context.inheritFromWidgetOfExactType(MonthlyExpensesProvider)
             as MonthlyExpensesProvider)
         .bloc;
+  }
+}
+
+class Month {
+  final int month;
+  final int year;
+  DateFormat formater = DateFormat("MMM / yy");
+
+  Month(this.month, this.year);
+
+  Month add(int months) {
+    DateTime result = DateTime(year, month + months);
+    return Month(result.month, result.year);
+  }
+
+  Month subtract(int months) {
+    DateTime result = DateTime(year, month - months);
+    return Month(result.month, result.year);
+  }
+
+  @override
+  String toString() {
+    return formater.format(DateTime(year, month)).toUpperCase();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:app/src/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/src/widgets/entry_list.dart';
@@ -10,7 +11,12 @@ class MonthlyExpensesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Transações")),
-      body: EntryList(bloc.entries),
+      body: Column(
+        children: <Widget>[
+          NavigationBar(),
+          Expanded(child: EntryList(bloc.entries)),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.note_add),
         onPressed: () {
