@@ -1,4 +1,5 @@
 import "package:intl/intl.dart";
+import 'package:money/money.dart';
 import 'package:app/src/models/account.dart';
 import 'package:app/src/models/category.dart';
 
@@ -10,25 +11,28 @@ enum EntryType {
 }
 
 class Entry {
-  String id;
-  String description;
-  double amount;
-  DateTime date;
-  Category category;
-  EntryType type;
-  Account account;
+  final String id;
+  final String description;
+  final Money amount;
+  final DateTime date;
+  final Category category;
+  final EntryType type;
+  final Account account;
 
   String get amountString {
     final f = new NumberFormat.simpleCurrency(
         decimalDigits: 2, locale: "pt_BR", name: "BRL");
 
-    if (type == EntryType.debit) return f.format(-amount);
-    return f.format(amount);
+    var result = amount.amount / amount.currency.subUnit;
+
+    if (type == EntryType.debit) return f.format(-result);
+
+    return f.format(result);
   }
 
   Entry.fromMap(this.id, Map<String, dynamic> data)
       : description = data["description"] ?? "",
-        amount = data["amount"] ?? 0.0,
+        amount = Money.fromDouble(data["amount"] ?? 0.0, Currency("BRL")),
         date = data["date"] ?? DateTime.now(),
         category = Category("categoria"),
         account = Account.fromMap(data["account"] ?? Map()),
