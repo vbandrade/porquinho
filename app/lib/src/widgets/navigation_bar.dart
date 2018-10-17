@@ -1,6 +1,6 @@
-import 'package:app/src/blocs/monthly_expenses_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:app/src/models/month.dart';
 
 class NavigationBar extends StatefulWidget {
   final Function(Month) _onMonthChanged;
