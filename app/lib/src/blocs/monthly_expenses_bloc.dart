@@ -2,11 +2,14 @@ import 'package:app/src/models/month.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/src/models/entry.dart';
+import 'package:rxdart/rxdart.dart';
 
 class MonthlyExpensesBloc {
   Stream<List<Entry>> get entries => _getEntries();
 
-  void changeMonth(Month mont) {}
+  ReplaySubject<Month> _query = ReplaySubject<Month>();
+  Function(Month) get changeMonth => _query.sink.add;
+
   Stream<List<Entry>> _getEntries() {
     return Firestore.instance
         .collection('entries')
@@ -18,6 +21,10 @@ class MonthlyExpensesBloc {
             documentSnapshot.documentID, documentSnapshot.data);
       }).toList();
     });
+  }
+
+  dispose() {
+    _query.close();
   }
 }
 
