@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 
 class MonthlyExpensesBloc {
   Stream<List<Entry>> get entries => _getEntries();
+
+  void changeMonth(Month mont) {}
   Stream<List<Entry>> _getEntries() {
     return Firestore.instance
         .collection('entries')

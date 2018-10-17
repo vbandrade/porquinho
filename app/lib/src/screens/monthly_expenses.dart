@@ -13,7 +13,7 @@ class MonthlyExpensesScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Transações")),
       body: Column(
         children: <Widget>[
-          NavigationBar(),
+          NavigationBar(bloc.changeMonth),
           Expanded(child: EntryList(bloc.entries)),
         ],
       ),
