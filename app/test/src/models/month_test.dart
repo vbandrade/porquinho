@@ -31,11 +31,16 @@ void main() {
       expect(result.month, 9);
       expect(result.year, 2017);
     });
-
     test("the default string format is \"MMM / yy\"", () {
       final startMonth = Month(10, 2018);
 
       expect(startMonth.toString(), "OCT / 18");
+    });
+    test("create using .now() returns current month / year", () {
+      final currentMonth = Month.now();
+
+      expect(currentMonth.year, 2018);
+      expect(currentMonth.month, 10);
     });
   });
 }

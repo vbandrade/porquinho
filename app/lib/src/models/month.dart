@@ -7,6 +7,10 @@ class Month {
 
   Month(this.month, this.year);
 
+  Month.now()
+      : month = 10,
+        year = 2018;
+
   Month add(int months) {
     DateTime result = DateTime(year, month + months);
     return Month(result.month, result.year);
