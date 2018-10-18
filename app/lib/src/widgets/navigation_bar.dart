@@ -13,7 +13,7 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   final formater = DateFormat("MMM / yy");
-  Month _currentMonth = Month(DateTime.now().month, DateTime.now().year);
+  Month _currentMonth = Month.now();
 
   TextStyle currentMonthStyle = TextStyle(
     fontWeight: FontWeight.bold,
