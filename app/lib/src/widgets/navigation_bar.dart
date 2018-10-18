@@ -40,15 +40,12 @@ class _NavigationBarState extends State<NavigationBar> {
                 });
               }),
           Expanded(
-            child: FlatButton(
-                child: Text(
-                  _currentMonth.toString(),
-                  style: currentMonthStyle,
-                ),
-                textColor: Colors.white,
-                onPressed: () {
-                  print("$_currentMonth");
-                }),
+            child: Center(
+              child: Text(
+                _currentMonth.toString(),
+                style: currentMonthStyle,
+              ),
+            ),
           ),
           FlatButton(
               child: Text("$nextMonth >"),
