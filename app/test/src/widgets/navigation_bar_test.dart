@@ -6,14 +6,6 @@ import '../helpers.dart';
 
 void main() {
   group('NavigationBar ', () {
-    testWidgets('NavigationBar criado no mes/ano atual',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(Wrapper(NavigationBar(null)));
-
-      final currentMonth = Month.now();
-      expect(find.text(currentMonth.toString()), findsOneWidget);
-    });
-
     testWidgets('NavigationBar criado no mes/ano atual, exibe meses corretos',
         (WidgetTester tester) async {
       await tester.pumpWidget(Wrapper(NavigationBar(null)));
@@ -36,9 +28,13 @@ void main() {
       );
     });
 
-    Function(Month) _onMonthChanged = (month) {};
     testWidgets('Tap no botado mes anterior muda o texto exibido',
         (WidgetTester tester) async {
+      Month result;
+      Function(Month) _onMonthChanged = (month) {
+        result = month;
+      };
+
       await tester.pumpWidget(Wrapper(NavigationBar(_onMonthChanged)));
 
       final previousMonth = Month.now().subtract(1);
@@ -46,14 +42,21 @@ void main() {
       await tester.tap(find.widgetWithText(FlatButton, "< $previousMonth"));
 
       await tester.pumpAndSettle();
+
       expect(
         find.text("$previousMonth"),
         findsOneWidget,
       );
+      expect(result.toString(), previousMonth.toString());
     });
 
     testWidgets('Tap no botado proximos mes muda o texto exibido',
         (WidgetTester tester) async {
+      Month result;
+      Function(Month) _onMonthChanged = (month) {
+        result = month;
+      };
+
       await tester.pumpWidget(Wrapper(NavigationBar(_onMonthChanged)));
 
       final nextMonth = Month.now().add(1);
@@ -65,6 +68,7 @@ void main() {
         find.text("$nextMonth"),
         findsOneWidget,
       );
+      expect(result.toString(), nextMonth.toString());
     });
   });
 }
