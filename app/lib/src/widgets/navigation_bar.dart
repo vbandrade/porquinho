@@ -20,28 +20,39 @@ class _NavigationBarState extends State<NavigationBar> {
     fontSize: 18.0,
   );
 
+  void _onPreviousMonthTap() {
+    setState(() {
+      final previousMonth = _currentMonth.subtract(1);
+      widget._onMonthChanged(previousMonth);
+      _currentMonth = previousMonth;
+    });
+  }
+
+  void _onNextMonthTap() {
+    setState(() {
+      final nextMonth = _currentMonth.add(1);
+      widget._onMonthChanged(nextMonth);
+      _currentMonth = nextMonth;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final previousMonth = _currentMonth.subtract(1);
     final nextMonth = _currentMonth.add(1);
-
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           FlatButton(
-              child: Text("< $previousMonth"),
-              textColor: Colors.white,
-              onPressed: () {
-                setState(() {
-                  widget._onMonthChanged(previousMonth);
-                  _currentMonth = previousMonth;
-                });
-              }),
+            child: Text("< $previousMonth"),
+            textColor: Colors.white,
+            onPressed: _onPreviousMonthTap,
+          ),
           Expanded(
             child: Center(
               child: Text(
-                _currentMonth.toString(),
+                "$_currentMonth",
                 style: currentMonthStyle,
               ),
             ),
@@ -49,12 +60,7 @@ class _NavigationBarState extends State<NavigationBar> {
           FlatButton(
               child: Text("$nextMonth >"),
               textColor: Colors.white,
-              onPressed: () {
-                setState(() {
-                  widget._onMonthChanged(nextMonth);
-                  _currentMonth = nextMonth;
-                });
-              }),
+              onPressed: _onNextMonthTap),
         ],
       ),
     );
