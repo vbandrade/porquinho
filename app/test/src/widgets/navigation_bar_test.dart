@@ -18,12 +18,14 @@ void main() {
         find.text("$currentMonth"),
         findsOneWidget,
       );
-      expect(
-        find.widgetWithText(FlatButton, "$nextMonth >"),
-        findsOneWidget,
-      );
+
       expect(
         find.widgetWithText(FlatButton, "< $previousMonth"),
+        findsOneWidget,
+      );
+
+      expect(
+        find.widgetWithText(FlatButton, "$nextMonth >"),
         findsOneWidget,
       );
     });
@@ -31,13 +33,14 @@ void main() {
     testWidgets('Tap no botado mes anterior muda o texto exibido',
         (WidgetTester tester) async {
       Month result;
+
+      final previousMonth = Month.now().subtract(1);
+
       Function(Month) _onMonthChanged = (month) {
         result = month;
       };
 
       await tester.pumpWidget(Wrapper(NavigationBar(_onMonthChanged)));
-
-      final previousMonth = Month.now().subtract(1);
 
       await tester.tap(find.widgetWithText(FlatButton, "< $previousMonth"));
 
@@ -50,16 +53,17 @@ void main() {
       expect(result.toString(), previousMonth.toString());
     });
 
-    testWidgets('Tap no botado proximos mes muda o texto exibido',
+    testWidgets('Tap no botado proximo mes muda o texto exibido',
         (WidgetTester tester) async {
       Month result;
+
+      final nextMonth = Month.now().add(1);
+
       Function(Month) _onMonthChanged = (month) {
         result = month;
       };
 
       await tester.pumpWidget(Wrapper(NavigationBar(_onMonthChanged)));
-
-      final nextMonth = Month.now().add(1);
 
       await tester.tap(find.widgetWithText(FlatButton, "$nextMonth >"));
 

@@ -35,7 +35,6 @@ class _NavigationBarState extends State<NavigationBar> {
               onPressed: () {
                 setState(() {
                   widget._onMonthChanged(previousMonth);
-
                   _currentMonth = previousMonth;
                 });
               }),
@@ -52,7 +51,7 @@ class _NavigationBarState extends State<NavigationBar> {
               textColor: Colors.white,
               onPressed: () {
                 setState(() {
-                  widget._onMonthChanged(previousMonth);
+                  widget._onMonthChanged(nextMonth);
                   _currentMonth = nextMonth;
                 });
               }),
