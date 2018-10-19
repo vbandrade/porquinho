@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:app/src/models/entry.dart';
@@ -7,15 +5,8 @@ import 'package:app/src/models/entry.dart';
 void main() {
   group("Test Entry ammountString", () {
     Map<String, dynamic> _getEntryMap() {
-      List<String> categories = [
-        "farmacia",
-        "random",
-        "mergulho",
-        "academia",
-        "taxi"
-      ];
-      Map<String, dynamic> cat = Map<String, dynamic>();
-      cat["name"] = categories[r.nextInt(categories.length)];
+      Map<String, dynamic> categoryMap = Map<String, dynamic>();
+      categoryMap["name"] = "Sports";
 
       Map<String, dynamic> account = Map<String, dynamic>();
       account["name"] = "cashhh";
@@ -25,7 +16,7 @@ void main() {
         "type": EntryType.debit.toString(),
         "amount": 3.14,
         "date": DateTime.now(),
-        "category": cat,
+        "category": categoryMap,
         "description": "lallalalalla",
         "account": account
       };
