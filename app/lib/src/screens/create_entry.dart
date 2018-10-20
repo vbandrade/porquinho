@@ -1,3 +1,4 @@
+import 'package:app/src/widgets/entry_form.dart';
 import 'package:flutter/material.dart';
 
 class CreateEntryScreen extends StatelessWidget {
@@ -16,6 +17,7 @@ class CreateEntryScreen extends StatelessWidget {
         ],
       ),
       body: ListView(children: [
+        EntryForm(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: RaisedButton(
