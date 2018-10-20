@@ -33,7 +33,7 @@ class Entry {
 
   String get amountString {
     final f = new NumberFormat.simpleCurrency(
-        decimalDigits: 2, locale: "pt_BR", name: "BRL");
+        decimalDigits: 2, name: amount.currency.code);
 
     var result = amount.amount / amount.currency.subUnit;
 
