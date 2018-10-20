@@ -11,6 +11,7 @@
 .svn/
 google-services.json
 *.g.dart
+screenshot*
 
 # IntelliJ related
 *.iml
