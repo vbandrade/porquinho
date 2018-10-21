@@ -1,6 +1,6 @@
 import "dart:async";
 
-class Bloc {
+class EntryFormBloc {
   Stream<bool> get submitValid => Stream.periodic(
         Duration(seconds: 1),
         (ocurrence) {

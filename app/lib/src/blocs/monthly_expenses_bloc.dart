@@ -1,8 +1,7 @@
-import 'package:app/src/models/month.dart';
-import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/src/models/entry.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:app/src/models/month.dart';
 
 class MonthlyExpensesBloc {
   ReplaySubject<Month> _query = ReplaySubject<Month>();
@@ -38,22 +37,5 @@ class MonthlyExpensesBloc {
 
   dispose() {
     _query.close();
-  }
-}
-
-class MonthlyExpensesProvider extends InheritedWidget {
-  @override
-  bool updateShouldNotify(InheritedWidget oldWidget) => true;
-
-  final MonthlyExpensesBloc bloc;
-
-  MonthlyExpensesProvider({Key key, Widget child})
-      : bloc = MonthlyExpensesBloc(),
-        super(key: key, child: child);
-
-  static MonthlyExpensesBloc of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(MonthlyExpensesProvider)
-            as MonthlyExpensesProvider)
-        .bloc;
   }
 }

@@ -1,13 +1,13 @@
-import 'package:app/src/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'package:app/src/widgets/entry_list.dart';
+import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/monthly_expenses_bloc.dart';
+import 'package:app/src/widgets/entry_list.dart';
+import 'package:app/src/widgets/navigation_bar.dart';
 
 class MonthlyExpensesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = MonthlyExpensesProvider.of(context);
+    final bloc = Provider.of<MonthlyExpensesBloc>(context);
 
     return Scaffold(
       appBar: AppBar(title: Text("Transações")),
