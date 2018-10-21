@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:app/src/widgets/entry_form/src/entry_form_bloc.dart';
 import 'package:app/src/widgets/entry_form/entry_form.dart';
 
 class CreateEntryScreen extends StatelessWidget {
-  submitButton() {
-    return RaisedButton(
-      child: Text(
-        'Salvar',
-        style: TextStyle(color: Colors.white),
-      ),
-      onPressed: null,
-      color: Colors.blue,
+  final bloc = EntryFormBloc();
+
+  Widget _submitButton() {
+    return StreamBuilder(
+      stream: bloc.submitValid,
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        return RaisedButton(
+          child: Text(
+            'Salvar',
+            style: TextStyle(color: Colors.white),
+          ),
+          onPressed: snapshot.hasData ? (snapshot.data ? () {} : null) : null,
+          color: Colors.blue,
+        );
+      },
     );
   }
 
@@ -31,7 +39,7 @@ class CreateEntryScreen extends StatelessWidget {
         EntryForm(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: submitButton(),
+          child: _submitButton(),
         )
       ]),
     );
