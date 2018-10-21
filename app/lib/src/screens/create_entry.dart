@@ -2,6 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/entry_form.dart';
 
 class CreateEntryScreen extends StatelessWidget {
+  submitButton() {
+    return RaisedButton(
+      child: Text(
+        'Salvar',
+        style: TextStyle(color: Colors.white),
+      ),
+      onPressed: null,
+      color: Colors.blue,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,14 +31,7 @@ class CreateEntryScreen extends StatelessWidget {
         EntryForm(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: RaisedButton(
-            child: Text(
-              'Salvar',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: () {},
-            color: Colors.blue,
-          ),
+          child: submitButton(),
         )
       ]),
     );
