@@ -1,14 +1,13 @@
-import 'package:app/src/widgets/entry_form/src/date_input.dart';
-import 'package:app/src/widgets/entry_form/src/description_input.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/src/amount_input.dart';
 import 'package:app/src/widgets/entry_form/src/entry_type_picker.dart';
+import 'package:app/src/widgets/entry_form/src/date_input.dart';
+import 'package:app/src/widgets/entry_form/src/description_input.dart';
+import 'package:app/src/widgets/entry_form/src/consolidated_input.dart';
 
 class EntryForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var style = TextStyle(fontSize: 18.0, color: Colors.purple[800]);
-
     const double topSpacing = 13.0;
 
     return Container(
@@ -117,18 +116,7 @@ class EntryForm extends StatelessWidget {
                       onPressed: () {},
                     ),
                     Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Consolidada",
-                            style: style,
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.check_box_outline_blank),
-                            onPressed: () {},
-                          )
-                        ],
-                      ),
+                      child: ConsolidatedInput(),
                     )
                   ],
                 ),
