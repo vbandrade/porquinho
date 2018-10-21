@@ -1,15 +1,9 @@
-import 'package:app/src/models/entry.dart';
+import 'package:app/src/widgets/entry_form/src/date_input.dart';
+import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/src/amount_input.dart';
 import 'package:app/src/widgets/entry_form/src/entry_type_picker.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class EntryForm extends StatelessWidget {
-  final numberFormatter = NumberFormat.simpleCurrency(
-      decimalDigits: 2, locale: "pt_BR", name: "BRL");
-
-  final dateFormatter = DateFormat('yyyy-MM-dd');
-
   @override
   Widget build(BuildContext context) {
     var style = TextStyle(fontSize: 18.0, color: Colors.purple[800]);
@@ -46,22 +40,7 @@ class EntryForm extends StatelessWidget {
                       icon: Icon(Icons.calendar_today),
                       onPressed: () {},
                     ),
-                    Expanded(
-                        child: Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom:
-                                        BorderSide(color: Colors.grey[500]))),
-                            child: GestureDetector(
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 5.0),
-                                child: Text(
-                                  dateFormatter.format(DateTime.now()),
-                                  style: style,
-                                ),
-                              ),
-                              onTap: () {},
-                            ))),
+                    Expanded(child: DateInput()),
                   ],
                 ),
               ),
