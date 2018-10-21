@@ -1,5 +1,6 @@
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/widgets/entry_form/src/amount_input.dart';
+import 'package:app/src/widgets/entry_form/src/entry_type_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,21 +13,6 @@ class EntryForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var style = TextStyle(fontSize: 18.0, color: Colors.purple[800]);
-
-    List<DropdownMenuItem<String>> entryType = [
-      DropdownMenuItem<String>(
-        child: Text("Crédito"),
-        value: EntryType.credit.toString(),
-      ),
-      DropdownMenuItem<String>(
-        child: Text("Debito"),
-        value: EntryType.debit.toString(),
-      ),
-      DropdownMenuItem<String>(
-        child: Text("Transferência"),
-        value: EntryType.transfer_in.toString(),
-      ),
-    ];
 
     const double topSpacing = 13.0;
 
@@ -48,11 +34,7 @@ class EntryForm extends StatelessWidget {
                     ),
                     Expanded(child: AmountInput()),
                     Expanded(
-                      child: DropdownButton<String>(
-                        style: style,
-                        items: entryType,
-                        onChanged: (String value) {},
-                      ),
+                      child: EntryTypePicker(),
                     ),
                   ],
                 ),
