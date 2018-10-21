@@ -1,4 +1,5 @@
 import 'package:app/src/widgets/entry_form/src/date_input.dart';
+import 'package:app/src/widgets/entry_form/src/description_input.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/src/amount_input.dart';
 import 'package:app/src/widgets/entry_form/src/entry_type_picker.dart';
@@ -54,18 +55,7 @@ class EntryForm extends StatelessWidget {
                       onPressed: () {},
                     ),
                     Expanded(
-                      child: TextFormField(
-                          style: style,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(hintText: "descrição"),
-                          autocorrect: true,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'por favor, insira uma transação';
-                            }
-                          },
-                          onFieldSubmitted: (String value) {},
-                          onSaved: (String value) {}),
+                      child: DescriptionInput(),
                     ),
                   ],
                 ),
