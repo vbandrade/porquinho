@@ -14,7 +14,7 @@ class _EntryTypePickerState extends State<EntryTypePicker> {
       value: EntryType.credit.toString(),
     ),
     DropdownMenuItem<String>(
-      child: Text("Debitoaaaa"),
+      child: Text("Debito"),
       value: EntryType.debit.toString(),
     ),
     DropdownMenuItem<String>(

@@ -26,7 +26,6 @@ class EntryForm extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: topSpacing),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.attach_money),
@@ -42,7 +41,6 @@ class EntryForm extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: topSpacing),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.calendar_today),
