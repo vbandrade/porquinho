@@ -47,7 +47,6 @@ class EntryForm extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: topSpacing),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.description),
