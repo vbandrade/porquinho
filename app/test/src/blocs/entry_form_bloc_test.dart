@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app/src/widgets/entry_form/src/entry_form_bloc.dart';
+import 'package:app/src/blocs/entry_form_bloc.dart';
 
 void main() {
   group("Test EntryFormBloc", () {

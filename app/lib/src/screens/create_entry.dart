@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/src/widgets/entry_form/src/entry_form_bloc.dart';
+import 'package:app/src/blocs/entry_form_bloc.dart';
 import 'package:app/src/widgets/entry_form/entry_form.dart';
 
 class CreateEntryScreen extends StatelessWidget {
