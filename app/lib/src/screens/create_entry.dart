@@ -1,5 +1,5 @@
-import 'package:app/src/widgets/entry_form.dart';
 import 'package:flutter/material.dart';
+import 'package:app/src/widgets/entry_form/entry_form.dart';
 
 class CreateEntryScreen extends StatelessWidget {
   @override

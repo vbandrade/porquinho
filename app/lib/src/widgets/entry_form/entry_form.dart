@@ -1,4 +1,5 @@
 import 'package:app/src/models/entry.dart';
+import 'package:app/src/widgets/entry_form/src/amount_input.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -45,22 +46,7 @@ class EntryForm extends StatelessWidget {
                       icon: Icon(Icons.attach_money),
                       onPressed: () {},
                     ),
-                    Expanded(
-                        child: Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom:
-                                        BorderSide(color: Colors.grey[500]))),
-                            child: GestureDetector(
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 5.0),
-                                child: Text(
-                                  numberFormatter.format(123456789.07),
-                                  style: style,
-                                ),
-                              ),
-                              onTap: () {},
-                            ))),
+                    Expanded(child: AmountInput()),
                     Expanded(
                       child: DropdownButton<String>(
                         style: style,
