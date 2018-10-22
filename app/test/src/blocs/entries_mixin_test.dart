@@ -1,14 +1,14 @@
-import 'package:app/src/models/entry.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:app/src/blocs/entries_mixin.dart';
 import 'package:money/money.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:app/src/models/entry.dart';
+import 'package:app/src/blocs/entries_mixin.dart';
 
 import '../helpers.dart';
 
 void main() {
   group("Test EntriesMixin", () {
-    test('rx.Observable.scan.reusable', () async {
+    test('Test amountTotalizer Transformer', () async {
       final mix = EntriesMixin();
 
       List<Entry> entries = [
