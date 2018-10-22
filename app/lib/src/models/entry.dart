@@ -53,4 +53,19 @@ class Entry {
             : data["type"].toString().contains("credit")
                 ? EntryType.credit
                 : EntryType.debit;
+
+  Money get sumAmount {
+    switch (type) {
+      case EntryType.credit:
+      case EntryType.transfer_in:
+        return amount;
+        break;
+      case EntryType.debit:
+      case EntryType.transfer_out:
+        return -amount;
+        break;
+      default:
+        return amount;
+    }
+  }
 }

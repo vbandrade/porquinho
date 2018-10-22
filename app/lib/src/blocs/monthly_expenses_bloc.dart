@@ -1,20 +1,27 @@
+import 'dart:async';
+import 'package:money/money.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/models/month.dart';
 
 class MonthlyExpensesBloc {
-  ReplaySubject<Month> _query = ReplaySubject<Month>();
+  final _query = ReplaySubject<Month>();
   Function(Month) get changeMonth => _query.sink.add;
 
-  Stream<List<Entry>> _results = Stream.empty();
+  Stream<List<Entry>> _results;
   Stream<List<Entry>> get entries => _results;
+
+  final _itemsOutput = BehaviorSubject<Money>();
+  Stream<Money> get totalAmount => _itemsOutput.stream;
 
   MonthlyExpensesBloc() {
     _results = _query
         .debounce(Duration(milliseconds: 200))
         .asyncMap(_getEntriesByMonth)
         .asBroadcastStream();
+
+    _results.transform(_entriesTotalizer()).pipe(_itemsOutput);
 
     _query.add(Month.now());
   }
@@ -35,7 +42,19 @@ class MonthlyExpensesBloc {
     });
   }
 
+  StreamTransformer<List<Entry>, Money> _entriesTotalizer() {
+    var initialValue = Money.fromDouble(0.0, Currency("BRL"));
+    return ScanStreamTransformer((Money acc, List<Entry> curr, int i) {
+      return curr.fold<Money>(initialValue, _entriesCombiner);
+    });
+  }
+
+  Money _entriesCombiner(Money previousValue, Entry element) {
+    return previousValue + element.sumAmount;
+  }
+
   dispose() {
     _query.close();
+    _itemsOutput.close();
   }
 }
