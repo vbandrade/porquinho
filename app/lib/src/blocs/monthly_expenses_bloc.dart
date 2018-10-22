@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/models/month.dart';
 
-class MonthlyExpensesBloc {
+class MonthlyExpensesBloc extends Object with EntriesMixin {
   final _query = ReplaySubject<Month>();
   Function(Month) get changeMonth => _query.sink.add;
 
@@ -21,7 +21,7 @@ class MonthlyExpensesBloc {
         .asyncMap(_getEntriesByMonth)
         .asBroadcastStream();
 
-    _results.transform(_entriesTotalizer()).pipe(_itemsOutput);
+    _results.transform(amountTotalizerTransformer).pipe(_itemsOutput);
 
     _query.add(Month.now());
   }
@@ -42,19 +42,24 @@ class MonthlyExpensesBloc {
     });
   }
 
-  StreamTransformer<List<Entry>, Money> _entriesTotalizer() {
-    var initialValue = Money.fromDouble(0.0, Currency("BRL"));
-    return ScanStreamTransformer((Money acc, List<Entry> curr, int i) {
-      return curr.fold<Money>(initialValue, _entriesCombiner);
-    });
-  }
-
-  Money _entriesCombiner(Money previousValue, Entry element) {
-    return previousValue + element.sumAmount;
-  }
-
   dispose() {
     _query.close();
     _itemsOutput.close();
+  }
+}
+
+class EntriesMixin {
+  StreamTransformer<List<Entry>, Money> get amountTotalizerTransformer =>
+      _amountTotalizerTransformer();
+
+  StreamTransformer<List<Entry>, Money> _amountTotalizerTransformer() {
+    var initialValue = Money.fromDouble(0.0, Currency("BRL"));
+    return ScanStreamTransformer((Money acc, List<Entry> curr, int i) {
+      return curr.fold<Money>(initialValue, _amountTotalizerCombiner);
+    });
+  }
+
+  Money _amountTotalizerCombiner(Money previousValue, Entry element) {
+    return previousValue + element.sumAmount;
   }
 }
