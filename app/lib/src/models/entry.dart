@@ -48,11 +48,7 @@ class Entry {
         date = data["date"] ?? DateTime.now(),
         category = Category("categoria"),
         account = Account.fromMap(data["account"] ?? Map()),
-        type = data["type"] == null
-            ? EntryType.debit
-            : data["type"].toString().contains("credit")
-                ? EntryType.credit
-                : EntryType.debit;
+        type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString());
 
   Money get sumAmount {
     switch (type) {

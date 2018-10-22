@@ -60,6 +60,16 @@ void main() {
           "id1234", _getEntryMap(amount: value, type: EntryType.credit));
     }
 
+    Entry _getTransferIn(double value) {
+      return Entry.fromMap(
+          "id1234", _getEntryMap(amount: value, type: EntryType.transfer_in));
+    }
+
+    Entry _getTransferOut(double value) {
+      return Entry.fromMap(
+          "id1234", _getEntryMap(amount: value, type: EntryType.transfer_out));
+    }
+
     test('sum of  entries according to type', () {
       List<Entry> entries = [
         _getDebit(3.14),
@@ -72,6 +82,21 @@ void main() {
       });
 
       expect(result, Money.fromDouble(1.05, Currency("BRL")));
+    });
+    test('sum of entries of every to type', () {
+      List<Entry> entries = [
+        _getDebit(3.14),
+        _getCredit(4.19),
+        _getTransferIn(2.22),
+        _getTransferOut(3.33),
+      ];
+
+      final result = entries.fold<Money>(Money.fromDouble(0.0, Currency("BRL")),
+          (previousValue, element) {
+        return previousValue + element.sumAmount;
+      });
+
+      expect(result, Money.fromDouble(-0.06, Currency("BRL")));
     });
   });
 }
