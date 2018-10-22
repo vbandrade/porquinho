@@ -2,10 +2,11 @@ import 'dart:async';
 import 'package:money/money.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app/src/blocs/entries_mixin.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/models/month.dart';
 
-class MonthlyExpensesBloc extends Object with EntriesMixin {
+class MonthlyExpensesBloc with EntriesMixin {
   final _query = ReplaySubject<Month>();
   Function(Month) get changeMonth => _query.sink.add;
 
@@ -45,21 +46,5 @@ class MonthlyExpensesBloc extends Object with EntriesMixin {
   dispose() {
     _query.close();
     _itemsOutput.close();
-  }
-}
-
-class EntriesMixin {
-  StreamTransformer<List<Entry>, Money> get amountTotalizerTransformer =>
-      _amountTotalizerTransformer();
-
-  StreamTransformer<List<Entry>, Money> _amountTotalizerTransformer() {
-    var initialValue = Money.fromDouble(0.0, Currency("BRL"));
-    return ScanStreamTransformer((Money acc, List<Entry> curr, int i) {
-      return curr.fold<Money>(initialValue, _amountTotalizerCombiner);
-    });
-  }
-
-  Money _amountTotalizerCombiner(Money previousValue, Entry element) {
-    return previousValue + element.sumAmount;
   }
 }
