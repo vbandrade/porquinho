@@ -38,7 +38,11 @@ class MonthlyExpensesBloc with EntriesMixin {
         .getDocuments()
         .then((snapshot) {
       return snapshot.documents.map((DocumentSnapshot doc) {
-        return Entry.fromMap(doc.documentID, doc.data);
+        try {
+          return Entry.fromMap(doc.documentID, doc.data);
+        } catch (error) {
+          print(error);
+        }
       }).toList();
     });
   }

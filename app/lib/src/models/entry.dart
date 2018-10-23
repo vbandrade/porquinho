@@ -49,7 +49,9 @@ class Entry {
         date = data["date"] ?? DateTime.now(),
         category = serializers.deserializeWith(
             Category.serializer, data["category"] ?? Map()),
-        account = Account.fromMap(data["account"] ?? Map()),
+        account = serializers.deserializeWith(
+            Account.serializer, data["account"] ?? Map()),
+        // account = Account.fromMap(data["account"] ?? Map()),
         type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString());
 
   Money get sumAmount {
