@@ -25,8 +25,9 @@ class EntriesHelper {
     categoryMap["name"] = "Sports";
 
     Map<String, dynamic> account = Map<String, dynamic>();
+    account["id"] = "1223";
     account["name"] = "cashhh";
-    account["type"] = "EntryAccountType.cash";
+    account["type"] = "cash";
 
     return {
       "type": type.toString(),
