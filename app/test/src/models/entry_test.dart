@@ -20,7 +20,7 @@ void main() {
         Entry.fromMap("id1234", entryMap),
         Entry.fromMap("id1234", entryMap),
       ];
-      var initialValue = Money.fromDouble(0.0, Currency("BRL"));
+      final initialValue = Money.fromDouble(0.0, Currency("BRL"));
 
       final result =
           entries.fold<Money>(initialValue, (previousValue, element) {

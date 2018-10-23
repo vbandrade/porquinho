@@ -3,6 +3,7 @@ import 'package:money/money.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:app/src/models/serializers.dart';
 import 'package:app/src/models/account.dart';
 import 'package:app/src/models/category.dart';
 
@@ -46,7 +47,8 @@ class Entry {
       : description = data["description"] ?? "",
         amount = Money.fromDouble(data["amount"] ?? 0.0, Currency("BRL")),
         date = data["date"] ?? DateTime.now(),
-        category = Category("categoria"),
+        category = serializers.deserializeWith(
+            Category.serializer, data["category"] ?? Map()),
         account = Account.fromMap(data["account"] ?? Map()),
         type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString());
 
