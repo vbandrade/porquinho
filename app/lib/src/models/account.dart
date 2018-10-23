@@ -22,7 +22,7 @@ class Account {
   final String name;
   final AccountType type;
 
-  Account.fromMap(Map<String, dynamic> data)
+  Account.fromMap(Map<dynamic, dynamic> data)
       : id = data["id"] ?? "-",
         name = data["name"] ?? "sem nome",
         type = AccountType.valueOf(
