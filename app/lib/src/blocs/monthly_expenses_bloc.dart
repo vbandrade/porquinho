@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:app/src/models/account.dart';
 import 'package:money/money.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,7 +79,7 @@ class MonthlyExpensesBloc with EntriesMixin {
 
     Map<String, dynamic> account = Map<String, dynamic>();
     account["name"] = "cashhh";
-    account["type"] = "EntryAccountType.cash";
+    account["type"] = AccountType.cash.toString();
 
     Firestore.instance.runTransaction((Transaction transactionHandler) async {
       CollectionReference reference = Firestore.instance.collection("entries");
