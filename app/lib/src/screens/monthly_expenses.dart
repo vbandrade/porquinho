@@ -11,7 +11,16 @@ class MonthlyExpensesScreen extends StatelessWidget {
     final bloc = Provider.of<MonthlyExpensesBloc>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text("Transações")),
+      appBar: AppBar(
+        title: Text("Transações"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.fiber_new),
+            color: Colors.white,
+            onPressed: bloc.createEntry,
+          ),
+        ],
+      ),
       body: Column(
         children: <Widget>[
           NavigationBar(bloc.changeMonth),
