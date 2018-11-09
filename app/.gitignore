@@ -12,6 +12,7 @@
 google-services.json
 *.g.dart
 screenshot*
+coverage/
 
 # IntelliJ related
 *.iml
