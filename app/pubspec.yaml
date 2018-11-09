@@ -26,9 +26,9 @@ dependencies:
   built_collection: 4.0.0
 
   date_interval_navigator:
-    path: "../../date_interval_navigator"
-    # git:
-    #   url: "https://github.com/vbandrade/date_interval_navigator"
+    # path: "../../date_interval_navigator"
+    git:
+      url: "https://github.com/vbandrade/date_interval_navigator"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
