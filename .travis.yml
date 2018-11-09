@@ -11,11 +11,15 @@ addons:
       - fonts-droid
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
-  - ./flutter/bin/flutter doctor
+  - export PATH="$PATH":"$HOME/.pub-cache/bin"
+  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
+  - flutter precache
+  - flutter doctor -v
 script:
   - cd app
-  - ../flutter/bin/flutter packages pub run build_runner build
-  - ../flutter/bin/flutter test
+  - flutter packages pub run build_runner build --delete-conflicting-outputs
+  - flutter test --coverage
 cache:
   directories:
     - $HOME/.pub-cache
+after_success: bash <(curl -s https://codecov.io/bash)
