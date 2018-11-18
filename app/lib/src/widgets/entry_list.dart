@@ -17,24 +17,13 @@ class EntryList extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
 
-          return _ListView(snapshot.data);
+          List<Entry> _entriesList = snapshot.data ?? const [];
+          return ListView.builder(
+            itemCount: _entriesList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return EntryTile(_entriesList[index]);
+            },
+          );
         });
-  }
-}
-
-class _ListView extends StatelessWidget {
-  final List<Entry> _entriesList;
-
-  const _ListView(List<Entry> entriesList)
-      : _entriesList = entriesList ?? const [];
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _entriesList.length,
-      itemBuilder: (BuildContext context, int index) {
-        return EntryTile(_entriesList[index]);
-      },
-    );
   }
 }
