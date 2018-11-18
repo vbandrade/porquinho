@@ -21,6 +21,7 @@ dependencies:
   intl: 0.15.7
   money: 0.2.1
   rxdart: 0.19.0
+  queries: 0.1.4
 
   built_value: 6.1.6
   built_collection: 4.0.0

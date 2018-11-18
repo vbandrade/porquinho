@@ -1,12 +1,18 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:app/src/models/account.dart';
+import "package:queries/queries.dart";
+import "package:queries/collections.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app/src/models/account.dart';
+import 'package:app/src/models/month.dart';
 import 'package:app/src/blocs/entries_mixin.dart';
 import 'package:app/src/models/entry.dart';
 
 class MonthlyExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();
+
+  Stream<List<MonthlyGroupedEntries>> get groupedEntries =>
+      _getMonthlyGroupedEntries();
 
   void createEntry() {
     print("FirestoreEntryRepository.createEntry");
@@ -58,4 +64,26 @@ class MonthlyExpensesBloc with EntriesMixin {
       }).toList();
     }).asStream();
   }
+
+  Stream<List<MonthlyGroupedEntries>> _getMonthlyGroupedEntries() {
+    return _getEntries()
+        .map<List<MonthlyGroupedEntries>>((List<Entry> entries) {
+      List<IGrouping> dailyIterable = Collection(entries)
+          .groupBy<Month>((x) => Month.fromDate(x.date))
+          .toList();
+
+      dailyIterable.sort((a, b) => a.key.compareTo(b.key));
+
+      return dailyIterable.map((f) {
+        return MonthlyGroupedEntries(f.key, f.toList());
+      }).toList();
+    });
+  }
+}
+
+class MonthlyGroupedEntries {
+  final Month month;
+  final List<Entry> entries;
+
+  MonthlyGroupedEntries(this.month, this.entries);
 }

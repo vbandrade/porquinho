@@ -23,7 +23,7 @@ class ExpensesScreen extends StatelessWidget {
         children: <Widget>[
           Padding(padding: EdgeInsets.only(bottom: 8.0)),
           Expanded(
-            child: EntryList(bloc.entries),
+            child: EntryList(bloc.groupedEntries),
           ),
         ],
       ),

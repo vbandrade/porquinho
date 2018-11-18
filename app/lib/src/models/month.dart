@@ -1,37 +1,42 @@
 import 'package:intl/intl.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 
-class Month implements Comparable<Month> {
-  final int month;
-  final int year;
-  DateFormat _formater = DateFormat("MMM / yy");
+part 'month.g.dart';
 
-  Month(this.month, this.year);
-
-  Month.now()
-      : month = 10,
-        year = 2018;
+abstract class Month implements Built<Month, MonthBuilder>, Comparable<Month> {
+  int get month;
+  int get year;
 
   Month add(int months) {
     DateTime result = DateTime(year, month + months);
-    return Month(result.month, result.year);
+    return Month.fromDate(result);
   }
 
   Month subtract(int months) {
     DateTime result = DateTime(year, month - months);
-    return Month(result.month, result.year);
+    return Month.fromDate(result);
   }
 
   @override
   String toString() {
-    return _formater.format(DateTime(year, month)).toUpperCase();
+    return DateFormat("MMM / yy").format(DateTime(year, month)).toUpperCase();
   }
 
-  String formatString(DateFormat formater) {
-    return formater.format(DateTime(year, month)).toUpperCase();
+  static Month now() {
+    return Month.fromDate(DateTime.now());
   }
 
   static fromDate(DateTime date) {
-    return Month(date.month, date.year);
+    return Month((b) => b
+      ..year = date.year
+      ..month = date.month);
+  }
+
+  static detailed(int month, int year) {
+    return Month((b) => b
+      ..year = year
+      ..month = month);
   }
 
   @override
@@ -46,4 +51,9 @@ class Month implements Comparable<Month> {
 
     return 0;
   }
+
+  Month._();
+  factory Month([updates(MonthBuilder b)]) = _$Month;
+
+  static Serializer<Month> get serializer => _$monthSerializer;
 }
