@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-class Month {
+class Month implements Comparable<Month> {
   final int month;
   final int year;
   DateFormat _formater = DateFormat("MMM / yy");
@@ -28,5 +28,22 @@ class Month {
 
   String formatString(DateFormat formater) {
     return formater.format(DateTime(year, month)).toUpperCase();
+  }
+
+  static fromDate(DateTime date) {
+    return Month(date.month, date.year);
+  }
+
+  @override
+  int compareTo(Month other) {
+    if ((year < other.year) || (year == other.year && month < other.month))
+      return -1;
+
+    if ((year == other.year) && (month == other.month)) return 0;
+
+    if ((year > other.year) || (year == other.year && month > other.month))
+      return 1;
+
+    return 0;
   }
 }

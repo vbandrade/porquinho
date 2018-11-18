@@ -42,5 +42,28 @@ void main() {
       expect(currentMonth.year, 2018);
       expect(currentMonth.month, 10);
     });
+
+    test("compare 12/2017 to 01/2018 ", () {
+      final dec2017 = Month(12, 2017);
+      final jan2018 = Month(1, 2018);
+
+      expect(dec2017.compareTo(jan2018), -1);
+      expect(jan2018.compareTo(dec2017), 1);
+    });
+
+    test("compare 03/2017 to 10/2017 ", () {
+      final mar2017 = Month(3, 2017);
+      final oct2017 = Month(10, 2017);
+
+      expect(mar2017.compareTo(oct2017), -1);
+      expect(oct2017.compareTo(mar2017), 1);
+    });
+    test("compare 06/2017 to 06/2017 ", () {
+      final jun2017 = Month(6, 2017);
+      final otherJun2017 = Month(6, 2017);
+
+      expect(jun2017.compareTo(otherJun2017), 0);
+      expect(otherJun2017.compareTo(jun2017), 0);
+    });
   });
 }
