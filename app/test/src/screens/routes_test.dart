@@ -1,8 +1,8 @@
 import 'package:app/src/blocs/monthly_expenses_bloc.dart';
+import 'package:app/src/screens/expenses.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/screens/routes.dart' as routes;
-import 'package:app/src/screens/monthly_expenses.dart';
 import 'package:app/src/screens/create_entry.dart';
 
 Type _typeOf<T>() => T;
@@ -15,7 +15,7 @@ void main() {
       final type = _typeOf<Provider<MonthlyExpensesBloc>>();
 
       expect(result.runtimeType, type);
-      expect(result.child.runtimeType, MonthlyExpensesScreen);
+      expect(result.child.runtimeType, ExpensesScreen);
     });
 
     test("createEntryHandler returns CreateEntryScreen", () {
