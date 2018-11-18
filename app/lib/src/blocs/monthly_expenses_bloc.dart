@@ -46,6 +46,7 @@ class MonthlyExpensesBloc with EntriesMixin {
   Stream<List<Entry>> _getEntries() {
     return Firestore.instance
         .collection("entries")
+        .orderBy("date")
         .getDocuments()
         .then((snapshot) {
       return snapshot.documents.map((DocumentSnapshot doc) {
