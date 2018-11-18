@@ -42,7 +42,7 @@ class EntryList extends StatelessWidget {
         });
   }
 
-  entriesListgenerator(MonthlyGroupedEntries current) {
+  Widget entriesListgenerator(MonthlyGroupedEntries current) {
     return SliverStickyHeaderBuilder(
       builder: (context, SliverStickyHeaderState state) =>
           MonthHeader(current.month, current.totalAmount, state),
