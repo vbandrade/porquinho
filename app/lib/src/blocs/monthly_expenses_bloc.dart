@@ -7,6 +7,7 @@ import 'package:app/src/models/account.dart';
 import 'package:app/src/models/month.dart';
 import 'package:app/src/blocs/entries_mixin.dart';
 import 'package:app/src/models/entry.dart';
+import 'package:money/money.dart';
 
 class MonthlyExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();
@@ -86,4 +87,11 @@ class MonthlyGroupedEntries {
   final List<Entry> entries;
 
   MonthlyGroupedEntries(this.month, this.entries);
+
+  Money get totalAmount => entries.fold<Money>(
+      Money.fromDouble(0.0, Currency("BRL")), _amountTotalizerCombiner);
+
+  Money _amountTotalizerCombiner(Money previousValue, Entry element) {
+    return previousValue + element.sumAmount;
+  }
 }

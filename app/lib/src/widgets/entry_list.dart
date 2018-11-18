@@ -1,7 +1,9 @@
+import 'package:app/src/models/month.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:app/src/blocs/monthly_expenses_bloc.dart';
 import 'package:app/src/widgets/entry_tile.dart';
+import 'package:money/money.dart';
 
 class EntryList extends StatelessWidget {
   final Stream<List<MonthlyGroupedEntries>> _entriesList;
@@ -42,22 +44,36 @@ class EntryList extends StatelessWidget {
 
   entriesListgenerator(MonthlyGroupedEntries current) {
     return SliverStickyHeaderBuilder(
-      builder: (context, state) => Container(
-            height: 60.0,
-            color: (state.isPinned ? Colors.pink : Colors.lightBlue)
-                .withOpacity(1.0 - state.scrollPercentage),
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              current.month.toString(),
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
+      builder: (context, SliverStickyHeaderState state) =>
+          MonthHeader(current.month, current.totalAmount, state),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) => EntryTile(current.entries[index]),
           childCount: current.entries.length,
         ),
+      ),
+    );
+  }
+}
+
+class MonthHeader extends StatelessWidget {
+  final Month month;
+  final Money totalAmount;
+  final SliverStickyHeaderState state;
+
+  const MonthHeader(this.month, this.totalAmount, this.state);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60.0,
+      color: (state.isPinned ? Colors.pink : Colors.lightBlue)
+          .withOpacity(1.0 - state.scrollPercentage),
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      alignment: Alignment.centerLeft,
+      child: Text(
+        "$month => $totalAmount",
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }
