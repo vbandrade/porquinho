@@ -16,30 +16,38 @@ class EntryList extends StatelessWidget {
   }
 
   Widget _buildGroupedByMonth(BuildContext context) {
-    return StreamBuilder(
-        stream: _entriesList,
-        builder: (BuildContext context,
-            AsyncSnapshot<List<MonthlyGroupedEntries>> snapshot) {
-          if (!snapshot.hasData)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          if (snapshot.hasError)
-            return Center(
-              child: Text(snapshot.error),
-            );
+    return Flex(
+      direction: Axis.vertical,
+      children: [
+        Expanded(
+          child: StreamBuilder(
+              stream: _entriesList,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<MonthlyGroupedEntries>> snapshot) {
+                if (!snapshot.hasData)
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                if (snapshot.hasError)
+                  return Center(
+                    child: Text(snapshot.error),
+                  );
 
-          List<MonthlyGroupedEntries> _groupedList = snapshot.data ?? const [];
+                List<MonthlyGroupedEntries> _groupedList =
+                    snapshot.data ?? const [];
 
-          final widgetList =
-              List<Widget>.generate(_groupedList.length, (index) {
-            MonthlyGroupedEntries current = _groupedList[index];
+                final widgetList =
+                    List<Widget>.generate(_groupedList.length, (index) {
+                  MonthlyGroupedEntries current = _groupedList[index];
 
-            return entriesListgenerator(current);
-          });
+                  return entriesListgenerator(current);
+                });
 
-          return CustomScrollView(slivers: widgetList);
-        });
+                return CustomScrollView(slivers: widgetList);
+              }),
+        )
+      ],
+    );
   }
 
   Widget entriesListgenerator(MonthlyGroupedEntries current) {

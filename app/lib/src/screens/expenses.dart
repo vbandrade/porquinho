@@ -19,14 +19,7 @@ class ExpensesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(padding: EdgeInsets.only(bottom: 8.0)),
-          Expanded(
-            child: EntryList(bloc.groupedEntries),
-          ),
-        ],
-      ),
+      body: EntryList(bloc.groupedEntries),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.note_add),
         onPressed: () {
