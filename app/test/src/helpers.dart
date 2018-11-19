@@ -1,5 +1,6 @@
-import 'package:app/src/models/entry.dart';
 import 'package:flutter/material.dart';
+import 'package:app/src/models/entry.dart';
+import 'package:app/src/models/entry_type.dart';
 
 class Wrapper extends StatelessWidget {
   final Widget child;

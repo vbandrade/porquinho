@@ -3,11 +3,12 @@ import 'dart:math';
 import "package:queries/queries.dart";
 import "package:queries/collections.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:money/money.dart';
 import 'package:app/src/models/account.dart';
 import 'package:app/src/models/month.dart';
 import 'package:app/src/blocs/entries_mixin.dart';
 import 'package:app/src/models/entry.dart';
-import 'package:money/money.dart';
+import 'package:app/src/models/entry_type.dart';
 
 class MonthlyExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();

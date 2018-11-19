@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:app/src/models/entry.dart';
+import 'package:app/src/models/entry_type.dart';
 
 class EntryTile extends StatelessWidget {
   final List<MaterialColor> _colors = [Colors.blue, Colors.indigo, Colors.red];

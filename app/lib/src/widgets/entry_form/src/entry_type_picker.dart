@@ -1,6 +1,6 @@
-import 'package:app/src/models/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/src/styles.dart';
+import 'package:app/src/models/entry_type.dart';
 
 class EntryTypePicker extends StatefulWidget {
   @override
