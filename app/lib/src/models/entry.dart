@@ -59,7 +59,7 @@ abstract class Entry implements Built<Entry, EntryBuilder> {
       ..id = data["id"] ?? ""
       ..description = data["description"] ?? ""
       ..amount = Money.fromDouble(data["amount"] ?? 0.0, Currency("BRL"))
-      ..date = data["date"] ?? DateTime.now()
+      ..date = (data["date"] as DateTime).toUtc()
       ..type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString())
       ..category = catBuilder
       ..account = accBuilder;

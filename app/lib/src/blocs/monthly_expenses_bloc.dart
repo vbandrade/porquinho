@@ -43,7 +43,8 @@ class MonthlyExpensesBloc with EntriesMixin {
           DateTime.now().year,
           DateTime.now().month,
           r.nextInt(30),
-        ),
+          12,
+        ).toUtc(),
         "category": cat,
         "description": "lallalalalla",
         "account": account
