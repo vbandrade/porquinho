@@ -7,7 +7,7 @@ void main() {
   group("Test Entry ", () {
     test("Amount string should ", () {
       final entryMap = EntriesHelper.getEntryMap();
-      final entry = Entry.fromMap("id1234", entryMap);
+      final entry = Entry.fromMap(entryMap);
 
       expect(entry.amountString, "-R\$ 3,14");
     });
@@ -15,10 +15,10 @@ void main() {
     test('sum of debit entries should be negative', () {
       final entryMap = EntriesHelper.getEntryMap();
       List<Entry> entries = [
-        Entry.fromMap("id1234", entryMap),
-        Entry.fromMap("id1234", entryMap),
-        Entry.fromMap("id1234", entryMap),
-        Entry.fromMap("id1234", entryMap),
+        Entry.fromMap(entryMap),
+        Entry.fromMap(entryMap),
+        Entry.fromMap(entryMap),
+        Entry.fromMap(entryMap),
       ];
       final initialValue = Money.fromDouble(0.0, Currency("BRL"));
 

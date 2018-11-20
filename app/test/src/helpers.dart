@@ -41,21 +41,20 @@ class EntriesHelper {
   }
 
   static Entry getDebit(double value) {
-    return Entry.fromMap("id1234", getEntryMap(amount: value));
+    return Entry.fromMap(getEntryMap(amount: value));
   }
 
   static Entry getCredit(double value) {
-    return Entry.fromMap(
-        "id1234", getEntryMap(amount: value, type: EntryType.credit));
+    return Entry.fromMap(getEntryMap(amount: value, type: EntryType.credit));
   }
 
   static Entry getTransferIn(double value) {
     return Entry.fromMap(
-        "id1234", getEntryMap(amount: value, type: EntryType.transfer_in));
+        getEntryMap(amount: value, type: EntryType.transfer_in));
   }
 
   static Entry getTransferOut(double value) {
     return Entry.fromMap(
-        "id1234", getEntryMap(amount: value, type: EntryType.transfer_out));
+        getEntryMap(amount: value, type: EntryType.transfer_out));
   }
 }
