@@ -15,7 +15,7 @@ class ExpensesScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.refresh),
             color: Colors.white,
-            onPressed: bloc.refresh,
+            onPressed: null,
           ),
           IconButton(
             icon: Icon(Icons.fiber_new),
