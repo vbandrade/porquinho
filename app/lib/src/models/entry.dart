@@ -48,27 +48,4 @@ abstract class Entry implements Built<Entry, EntryBuilder> {
         return amount;
     }
   }
-
-  // static Entry fromMap(Map<String, dynamic> data) {
-  //   final catBuilder = CategoryBuilder()..name = "new category";
-  //   final accBuilder = AccountBuilder()
-  //     ..id = "112"
-  //     ..type = AccountType.checking
-  //     ..name = "new account";
-
-  //   final moneyBuilder = MoneyBuilder()
-  //     ..amount = data["amount"]
-  //     ..currency = Currency.fromCode("BRL").toBuilder();
-
-  //   final builder = EntryBuilder()
-  //     ..id = data["id"] ?? ""
-  //     ..description = data["description"] ?? ""
-  //     ..amount = moneyBuilder
-  //     ..date = (data["date"] as DateTime).toUtc()
-  //     ..type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString())
-  //     ..category = catBuilder
-  //     ..account = accBuilder;
-
-  //   return builder.build();
-  // }
 }

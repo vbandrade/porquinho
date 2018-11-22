@@ -70,7 +70,6 @@ class MonthlyExpensesBloc with EntriesMixin {
         .then((snapshot) {
       return snapshot.documents.map((DocumentSnapshot doc) {
         try {
-          // return Entry.fromMap(doc.data);
           return serializers.deserializeWith(Entry.serializer, doc.data);
         } catch (error) {
           print(error);
