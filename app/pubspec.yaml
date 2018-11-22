@@ -28,9 +28,8 @@ dependencies:
   flutter_sticky_header: 0.3.4
 
   money:
-    path: ../../money_dart
-    # git:
-    #   url: https://github.com/vbandrade/money.dart
+    git:
+      url: https://github.com/vbandrade/money_value.dart
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
