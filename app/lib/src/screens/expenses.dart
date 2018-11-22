@@ -13,6 +13,11 @@ class ExpensesScreen extends StatelessWidget {
         title: Text("Transações"),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.refresh),
+            color: Colors.white,
+            onPressed: bloc.refresh,
+          ),
+          IconButton(
             icon: Icon(Icons.fiber_new),
             color: Colors.white,
             onPressed: bloc.createEntry,
