@@ -10,7 +10,7 @@ class EntriesMixin {
   StreamTransformer<List<Entry>, Money> _amountTotalizerTransformer() {
     return ScanStreamTransformer((Money acc, List<Entry> curr, int i) {
       return curr.fold<Money>(
-          Money.fromDouble(0.0, Currency("BRL")), _amountTotalizerCombiner);
+          Money.fromDouble(0.0, Currency.fromCode("BRL")), _amountTotalizerCombiner);
     });
   }
 

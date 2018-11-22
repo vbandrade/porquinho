@@ -9,6 +9,7 @@ import 'package:app/src/models/entry_type.dart';
 part 'entry.g.dart';
 
 abstract class Entry implements Built<Entry, EntryBuilder> {
+  @nullable
   String get id;
   String get description;
   Money get amount;
@@ -48,22 +49,26 @@ abstract class Entry implements Built<Entry, EntryBuilder> {
     }
   }
 
-  static Entry fromMap(Map<String, dynamic> data) {
-    final catBuilder = CategoryBuilder()..name = "new category";
-    final accBuilder = AccountBuilder()
-      ..id = "112"
-      ..type = AccountType.checking
-      ..name = "new account";
+  // static Entry fromMap(Map<String, dynamic> data) {
+  //   final catBuilder = CategoryBuilder()..name = "new category";
+  //   final accBuilder = AccountBuilder()
+  //     ..id = "112"
+  //     ..type = AccountType.checking
+  //     ..name = "new account";
 
-    final builder = EntryBuilder()
-      ..id = data["id"] ?? ""
-      ..description = data["description"] ?? ""
-      ..amount = Money.fromDouble(data["amount"] ?? 0.0, Currency("BRL"))
-      ..date = (data["date"] as DateTime).toUtc()
-      ..type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString())
-      ..category = catBuilder
-      ..account = accBuilder;
+  //   final moneyBuilder = MoneyBuilder()
+  //     ..amount = data["amount"]
+  //     ..currency = Currency.fromCode("BRL").toBuilder();
 
-    return builder.build();
-  }
+  //   final builder = EntryBuilder()
+  //     ..id = data["id"] ?? ""
+  //     ..description = data["description"] ?? ""
+  //     ..amount = moneyBuilder
+  //     ..date = (data["date"] as DateTime).toUtc()
+  //     ..type = EntryType.valueOf(data["type"] ?? EntryType.debit.toString())
+  //     ..category = catBuilder
+  //     ..account = accBuilder;
+
+  //   return builder.build();
+  // }
 }

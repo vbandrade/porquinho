@@ -21,7 +21,7 @@ void main() {
       Observable(Stream.fromIterable([entries]))
           .transform(mix.amountTotalizerTransformer)
           .listen(expectAsync1((result) {
-            expect(result, Money.fromDouble(-0.06, Currency("BRL")));
+            expect(result, Money.fromDouble(-0.06, Currency.fromCode("BRL")));
           }, count: 1));
     });
   });

@@ -19,7 +19,6 @@ dependencies:
   fluro: 1.3.7
   cloud_firestore: "0.8.2+3"
   intl: 0.15.7
-  money: 0.2.1
   rxdart: 0.19.0
   queries: 0.1.4
 
@@ -28,6 +27,11 @@ dependencies:
 
   flutter_sticky_header: 0.3.4
 
+  money:
+    path: ../../money_dart
+    # git:
+    #   url: https://github.com/vbandrade/money.dart
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: 0.1.2
@@ -35,6 +39,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_test:
   build_runner: 1.1.2
   built_value_generator: 6.1.6
 

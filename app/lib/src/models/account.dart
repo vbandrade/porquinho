@@ -18,7 +18,6 @@ class AccountType extends EnumClass {
 }
 
 abstract class Account implements Built<Account, AccountBuilder> {
-  //TODO: RETIRAR NULLABLE
   @nullable
   String get id;
   String get name;
