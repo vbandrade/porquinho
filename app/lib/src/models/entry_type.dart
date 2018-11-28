@@ -9,7 +9,6 @@ class EntryType extends EnumClass {
   static const EntryType credit = _$credit;
   static const EntryType debit = _$debit;
   static const EntryType transfer_in = _$transfer_in;
-
   static const EntryType transfer_out = _$transfer_out;
 
   const EntryType._(String name) : super(name);
