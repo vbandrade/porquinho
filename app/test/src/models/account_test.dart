@@ -6,7 +6,7 @@ void main() {
   group("Test Account model", () {
     test('serializer shouldnt throw exception', () {
       final builder = AccountBuilder()
-        ..name = "category"
+        ..name = "new account"
         ..type = AccountType.cash;
       final account = builder.build();
       final serialized = serializers.serializeWith(Account.serializer, account);
