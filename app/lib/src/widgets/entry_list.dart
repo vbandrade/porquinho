@@ -1,7 +1,7 @@
 import 'package:app/src/models/month.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:app/src/blocs/monthly_expenses_bloc.dart';
+import 'package:app/src/blocs/expenses_bloc.dart';
 import 'package:app/src/widgets/entry_tile.dart';
 import 'package:money/money.dart';
 

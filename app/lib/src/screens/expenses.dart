@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:app/src/blocs/provider.dart';
-import 'package:app/src/blocs/monthly_expenses_bloc.dart';
+import 'package:app/src/blocs/expenses_bloc.dart';
 import 'package:app/src/widgets/entry_list.dart';
 
 class ExpensesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<MonthlyExpensesBloc>(context);
+    final bloc = Provider.of<ExpensesBloc>(context);
 
     return Scaffold(
       appBar: AppBar(

@@ -12,7 +12,7 @@ import 'package:app/src/models/entry_type.dart';
 import 'package:app/src/models/category.dart';
 import 'package:app/src/models/serializers.dart';
 
-class MonthlyExpensesBloc with EntriesMixin {
+class ExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();
 
   Stream<List<MonthlyGroupedEntries>> get groupedEntries =>

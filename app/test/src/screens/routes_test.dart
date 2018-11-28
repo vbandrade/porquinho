@@ -1,4 +1,4 @@
-import 'package:app/src/blocs/monthly_expenses_bloc.dart';
+import 'package:app/src/blocs/expenses_bloc.dart';
 import 'package:app/src/screens/expenses.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:app/src/blocs/provider.dart';
@@ -12,7 +12,7 @@ void main() {
     ///TODO: Use WidgetTester
     test("homeHandler returns MonthlyExpensesScreen", () {
       Provider result = routes.homeHandler.handlerFunc(null, null);
-      final type = _typeOf<Provider<MonthlyExpensesBloc>>();
+      final type = _typeOf<Provider<ExpensesBloc>>();
 
       expect(result.runtimeType, type);
       expect(result.child.runtimeType, ExpensesScreen);
