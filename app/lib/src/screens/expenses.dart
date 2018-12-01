@@ -1,3 +1,4 @@
+import 'package:app/src/models/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/expenses_bloc.dart';
@@ -24,7 +25,7 @@ class ExpensesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: EntryList(bloc.groupedEntries),
+      body: EntryList(bloc.groupedEntries, onItemTap),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.note_add),
         onPressed: () {
@@ -32,5 +33,9 @@ class ExpensesScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void onItemTap(Entry item) {
+    debugPrint(item.toString());
   }
 }

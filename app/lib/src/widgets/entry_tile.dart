@@ -3,11 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/models/entry_type.dart';
 
+typedef OnEntryTap = void Function(Entry);
+
 class EntryTile extends StatelessWidget {
   final List<MaterialColor> _colors = [Colors.blue, Colors.indigo, Colors.red];
-  final Entry entry;
 
-  EntryTile(this.entry);
+  final Entry entry;
+  final OnEntryTap onEntryTap;
+
+  EntryTile([
+    this.entry,
+    this.onEntryTap,
+  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,9 @@ class EntryTile extends StatelessWidget {
                 color: entry.type == EntryType.credit
                     ? Colors.green
                     : Colors.black)),
-        onTap: () {},
+        onTap: () {
+          if (onEntryTap != null) onEntryTap(entry);
+        },
       ),
     );
   }

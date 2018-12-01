@@ -7,8 +7,9 @@ import 'package:money/money.dart';
 
 class EntryList extends StatelessWidget {
   final Stream<List<MonthlyGroupedEntries>> _entriesList;
+  final OnEntryTap onEntryTap;
 
-  EntryList(this._entriesList);
+  EntryList(this._entriesList, this.onEntryTap);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class EntryList extends StatelessWidget {
           MonthHeader(current.month, current.totalAmount, state),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
-          (context, index) => EntryTile(current.entries[index]),
+          (context, index) => EntryTile(current.entries[index], onEntryTap),
           childCount: current.entries.length,
         ),
       ),
