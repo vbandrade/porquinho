@@ -25,7 +25,12 @@ class ExpensesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: EntryList(bloc.groupedEntries, onItemTap),
+      body: EntryList(
+        entriesListStream: bloc.groupedEntries,
+        onEntryTap: (Entry entry) {
+          onEntryTap(context, entry);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.note_add),
         onPressed: () {
@@ -35,7 +40,7 @@ class ExpensesScreen extends StatelessWidget {
     );
   }
 
-  void onItemTap(Entry item) {
-    debugPrint(item.toString());
+  void onEntryTap(BuildContext context, Entry entry) {
+    debugPrint(entry.toString());
   }
 }

@@ -6,10 +6,10 @@ import 'package:app/src/widgets/entry_tile.dart';
 import 'package:money/money.dart';
 
 class EntryList extends StatelessWidget {
-  final Stream<List<MonthlyGroupedEntries>> _entriesList;
+  final Stream<List<MonthlyGroupedEntries>> entriesListStream;
   final OnEntryTap onEntryTap;
 
-  EntryList(this._entriesList, this.onEntryTap);
+  EntryList({this.entriesListStream, this.onEntryTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class EntryList extends StatelessWidget {
       children: [
         Expanded(
           child: StreamBuilder(
-              stream: _entriesList,
+              stream: entriesListStream,
               builder: (BuildContext context,
                   AsyncSnapshot<List<MonthlyGroupedEntries>> snapshot) {
                 if (!snapshot.hasData)
