@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app/src/widgets/entry_form/src/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +13,8 @@ class _AmountInputState extends State<AmountInput> {
   final numberFormatter = NumberFormat.simpleCurrency(
       decimalDigits: 2, locale: "pt_BR", name: "BRL");
 
+  double amount = Random().nextDouble() * 1000;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +24,7 @@ class _AmountInputState extends State<AmountInput> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
             child: Text(
-              numberFormatter.format(555.07),
+              numberFormatter.format(amount),
               style: Styles.userInputStyle,
             ),
           ),
