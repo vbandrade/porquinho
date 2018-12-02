@@ -8,26 +8,35 @@ class EntryTypePicker extends StatefulWidget {
 }
 
 class _EntryTypePickerState extends State<EntryTypePicker> {
-  List<DropdownMenuItem<String>> entryType = [
-    DropdownMenuItem<String>(
+  EntryType selected = EntryType.debit;
+
+  final entryTypes = [
+    DropdownMenuItem<EntryType>(
       child: Text("Crédito"),
-      value: EntryType.credit.toString(),
+      value: EntryType.credit,
     ),
-    DropdownMenuItem<String>(
+    DropdownMenuItem<EntryType>(
       child: Text("Debito"),
-      value: EntryType.debit.toString(),
+      value: EntryType.debit,
     ),
-    DropdownMenuItem<String>(
+    DropdownMenuItem<EntryType>(
       child: Text("Transferência"),
-      value: EntryType.transfer_in.toString(),
+      value: EntryType.transfer_in,
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
+    return DropdownButton<EntryType>(
       style: Styles.userInputStyle,
-      items: entryType,
-      onChanged: (String value) {},
+      items: entryTypes,
+      value: selected,
+      onChanged: (EntryType value) {
+        debugPrint(value.toString());
+        setState(() {
+          selected = value;
+        });
+      },
     );
   }
 }
