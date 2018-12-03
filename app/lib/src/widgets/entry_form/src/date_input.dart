@@ -2,8 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:app/src/widgets/entry_form/src/styles.dart';
 
-class DateInput extends StatelessWidget {
+class DateInput extends StatefulWidget {
+  @override
+  DateInputState createState() {
+    return DateInputState();
+  }
+}
+
+class DateInputState extends State<DateInput> {
   final dateFormatter = DateFormat('yyyy-MM-dd');
+
+  DateTime selected;
+
+  @override
+  void initState() {
+    super.initState();
+    selected = _getFormatted(DateTime.now());
+  }
+
+  DateTime _getFormatted(DateTime date) {
+    return DateTime(date.year, date.month, date.day, 12);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,11 +33,25 @@ class DateInput extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
             child: Text(
-              dateFormatter.format(DateTime.now()),
+              dateFormatter.format(selected),
               style: Styles.userInputStyle,
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            this.selectDateFromPicker();
+          },
         ));
+  }
+
+  Future<Null> selectDateFromPicker() async {
+    DateTime result = await showDatePicker(
+      context: context,
+      initialDate: selected,
+      firstDate: DateTime(1960),
+      lastDate: DateTime(2050),
+    );
+    setState(() {
+      if (result != null) selected = _getFormatted(result);
+    });
   }
 }
