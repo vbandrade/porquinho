@@ -1,3 +1,5 @@
+import 'package:app/src/blocs/create_entry_bloc.dart';
+import 'package:app/src/blocs/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/src/amount_input.dart';
 import 'package:app/src/widgets/entry_form/src/entry_type_picker.dart';
@@ -9,6 +11,8 @@ class EntryForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double topSpacing = 13.0;
+
+    final bloc = Provider.of<EntryBloc>(context);
 
     return Container(
         padding: EdgeInsets.only(top: 20.0, right: 10.0),

@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:app/src/blocs/entry_form_bloc.dart';
+import 'package:app/src/blocs/create_entry_bloc.dart';
+import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/widgets/entry_form/entry_form.dart';
 
 class CreateEntryScreen extends StatelessWidget {
-  final bloc = EntryFormBloc();
-
-  Widget _submitButton() {
+  Widget _submitButton(EntryBloc bloc) {
     return StreamBuilder(
-      stream: bloc.submitValid,
+      stream: bloc.isValid,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         return RaisedButton(
           child: Text(
             'Salvar',
             style: TextStyle(color: Colors.white),
           ),
-          onPressed: snapshot.hasData ? (snapshot.data ? () {} : null) : null,
+          onPressed: snapshot.hasData
+              ? (snapshot.data
+                  ? () {
+                      debugPrint("entryCreated");
+                    }
+                  : null)
+              : null,
           color: Colors.blue,
         );
       },
@@ -23,6 +28,8 @@ class CreateEntryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<EntryBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Criar transação'),
@@ -39,7 +46,7 @@ class CreateEntryScreen extends StatelessWidget {
         EntryForm(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: _submitButton(),
+          child: _submitButton(bloc),
         )
       ]),
     );
