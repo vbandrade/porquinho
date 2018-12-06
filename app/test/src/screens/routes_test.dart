@@ -1,3 +1,4 @@
+import 'package:app/src/blocs/create_entry_bloc.dart';
 import 'package:app/src/blocs/expenses_bloc.dart';
 import 'package:app/src/screens/expenses.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,8 +20,14 @@ void main() {
     });
 
     test("createEntryHandler returns CreateEntryScreen", () {
-      final result = routes.createEntryHandler.handlerFunc(null, null);
-      expect(result.runtimeType, CreateEntryScreen);
+      Provider result = routes.createEntryHandler.handlerFunc(null, null);
+      final type = _typeOf<Provider<EntryBloc>>();
+
+      expect(result.runtimeType, type);
+      expect(result.child.runtimeType, CreateEntryScreen);
+
+      // final result = routes.createEntryHandler.handlerFunc(null, null);
+      // expect(result.runtimeType, CreateEntryScreen);
     });
   });
 }
