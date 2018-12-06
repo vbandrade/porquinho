@@ -44,7 +44,7 @@ class EntryForm extends StatelessWidget {
                       icon: Icon(Icons.calendar_today),
                       onPressed: () {},
                     ),
-                    Expanded(child: DateInput()),
+                    Expanded(child: DateInput(onChanged: bloc.onDateChanged)),
                   ],
                 ),
               ),

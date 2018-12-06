@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:app/src/widgets/entry_form/src/styles.dart';
 
+typedef OnChanged = void Function(DateTime);
+
 class DateInput extends StatefulWidget {
+  final OnChanged onChanged;
+
+  const DateInput({this.onChanged});
+
   @override
   DateInputState createState() {
     return DateInputState();
@@ -18,6 +24,7 @@ class DateInputState extends State<DateInput> {
   void initState() {
     super.initState();
     selected = _getFormatted(DateTime.now());
+    if (widget.onChanged != null) widget.onChanged(selected);
   }
 
   DateTime _getFormatted(DateTime date) {
@@ -51,7 +58,10 @@ class DateInputState extends State<DateInput> {
       lastDate: DateTime(2050),
     );
     setState(() {
-      if (result != null) selected = _getFormatted(result);
+      if (result != null) {
+        selected = _getFormatted(result);
+        if (widget.onChanged != null) widget.onChanged(selected);
+      }
     });
   }
 }

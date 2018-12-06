@@ -31,6 +31,12 @@ class CreateEntryBloc with AmountValidator implements EntryBloc {
     _typeController.close();
     _descriptionController.close();
   }
+
+  CreateEntryBloc() {
+    _dateController.listen((DateTime onData) {
+      print(onData.toString());
+    });
+  }
 }
 
 class AmountValidator {
