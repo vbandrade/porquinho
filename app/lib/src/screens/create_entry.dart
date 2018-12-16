@@ -13,13 +13,7 @@ class CreateEntryScreen extends StatelessWidget {
             'Salvar',
             style: TextStyle(color: Colors.white),
           ),
-          onPressed: snapshot.hasData
-              ? (snapshot.data
-                  ? () {
-                      debugPrint("entryCreated");
-                    }
-                  : null)
-              : null,
+          onPressed: bloc.save,
           color: Colors.blue,
         );
       },

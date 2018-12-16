@@ -62,68 +62,68 @@ class EntryForm extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: topSpacing),
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.account_balance),
-                      onPressed: () {},
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.amberAccent,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: topSpacing),
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.category),
-                      onPressed: () {},
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.amberAccent,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: topSpacing),
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.label_outline),
-                      onPressed: () {},
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.amberAccent,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: topSpacing),
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.more_horiz),
-                      onPressed: () {},
-                    ),
-                    Expanded(
-                      child: ConsolidatedInput(),
-                    )
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: topSpacing),
+              //   child: Row(
+              //     children: <Widget>[
+              //       IconButton(
+              //         icon: Icon(Icons.account_balance),
+              //         onPressed: () {},
+              //       ),
+              //       Expanded(
+              //         child: Container(
+              //           color: Colors.amberAccent,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: topSpacing),
+              //   child: Row(
+              //     children: <Widget>[
+              //       IconButton(
+              //         icon: Icon(Icons.category),
+              //         onPressed: () {},
+              //       ),
+              //       Expanded(
+              //         child: Container(
+              //           color: Colors.amberAccent,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: topSpacing),
+              //   child: Row(
+              //     children: <Widget>[
+              //       IconButton(
+              //         icon: Icon(Icons.label_outline),
+              //         onPressed: () {},
+              //       ),
+              //       Expanded(
+              //         child: Container(
+              //           color: Colors.amberAccent,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: topSpacing),
+              //   child: Row(
+              //     children: <Widget>[
+              //       IconButton(
+              //         icon: Icon(Icons.more_horiz),
+              //         onPressed: () {},
+              //       ),
+              //       Expanded(
+              //         child: ConsolidatedInput(),
+              //       )
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ));

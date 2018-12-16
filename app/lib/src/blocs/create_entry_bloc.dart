@@ -1,4 +1,10 @@
 import 'dart:async';
+import 'dart:math';
+import 'package:app/src/models/account.dart';
+import 'package:app/src/models/category.dart';
+import 'package:app/src/models/entry.dart';
+import 'package:app/src/models/serializers.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:money/money.dart';
 import 'package:app/src/models/entry_type.dart';
@@ -32,9 +38,54 @@ class CreateEntryBloc with AmountValidator implements EntryBloc {
     _descriptionController.close();
   }
 
+  DateTime _date;
+
   CreateEntryBloc() {
     _dateController.listen((DateTime onData) {
       print(onData.toString());
+      _date = onData.toUtc();
+    });
+  }
+
+  @override
+  void save() {
+    print("CreateEntryBloc.save");
+    print("date: ${_date}");
+
+    Random r = new Random();
+
+    List<String> categories = [
+      "farmacia",
+      "random",
+      "mergulho",
+      "academia",
+      "taxi"
+    ];
+
+    final catBuilder = CategoryBuilder()
+      ..name = categories[r.nextInt(categories.length)];
+    final accBuilder = AccountBuilder()
+      ..type = AccountType.cash
+      ..name = "cha ching!";
+
+    final amountBuilder = Money.fromDouble(
+      r.nextDouble() * 100,
+      Currency.fromCode("BRL"),
+    ).toBuilder();
+
+    final builder = EntryBuilder()
+      ..description = "from built_value \\o/"
+      ..amount = amountBuilder
+      ..date = _date
+      ..type = r.nextBool() ? EntryType.credit : EntryType.debit
+      ..category = catBuilder
+      ..account = accBuilder;
+
+    Firestore.instance.runTransaction((Transaction transactionHandler) async {
+      CollectionReference reference = Firestore.instance.collection("entries");
+
+      await reference
+          .add(serializers.serializeWith(Entry.serializer, builder.build()));
     });
   }
 }
@@ -62,4 +113,6 @@ abstract class EntryBloc {
   Stream<String> get description;
 
   Stream<bool> get isValid;
+
+  void save();
 }
