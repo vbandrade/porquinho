@@ -27,6 +27,7 @@ var createEntryHandler =
 var editEntryHandler =
     Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   String id = params["id"][0];
+  
   return Provider<EntryBloc>(
     child: EditEntryScreen(),
     bloc: EditEntryBloc(id),
@@ -45,7 +46,7 @@ void setup(Router router) {
     '/entry/new',
     handler: createEntryHandler,
   );
-  
+
   router.define(
     '/entry/:id',
     handler: editEntryHandler,

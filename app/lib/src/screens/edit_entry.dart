@@ -1,3 +1,4 @@
+import 'package:app/src/blocs/create_entry_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/blocs/edit_entry_bloc.dart';
 import 'package:app/src/blocs/provider.dart';
@@ -22,11 +23,11 @@ class EditEntryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of<EntryBloc>(context);
+    EditEntryBloc bloc = Provider.of<EntryBloc>(context) as EditEntryBloc;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar transação #${bloc.id}'),
+        title: Text('Editar transação #${bloc.id}'),
         actions: [
           IconButton(
             icon: Icon(Icons.close),

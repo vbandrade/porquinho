@@ -1,4 +1,5 @@
 import 'package:app/src/models/entry.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/expenses_bloc.dart';
@@ -41,7 +42,6 @@ class ExpensesScreen extends StatelessWidget {
   }
 
   void onEntryTap(BuildContext context, Entry entry) {
-    debugPrint(entry.toString());
-    Navigator.of(context).pushNamed("/entry/${entry.id}");
+    Router().navigateTo(context, "/entry/${entry.id}");
   }
 }
