@@ -70,7 +70,13 @@ class ExpensesBloc with EntriesMixin {
         .then((snapshot) {
       return snapshot.documents.map((DocumentSnapshot doc) {
         try {
-          return serializers.deserializeWith(Entry.serializer, doc.data);
+          Entry result =
+              serializers.deserializeWith<Entry>(Entry.serializer, doc.data);
+
+          if (result.id == null)
+            result = result.rebuild((b) => b..id = doc.documentID);
+
+          return result;
         } catch (error) {
           print(error);
         }
