@@ -42,5 +42,6 @@ class ExpensesScreen extends StatelessWidget {
 
   void onEntryTap(BuildContext context, Entry entry) {
     debugPrint(entry.toString());
+    Navigator.of(context).pushNamed("/entry/${entry.id}");
   }
 }
