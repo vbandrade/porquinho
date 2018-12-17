@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/src/blocs/create_entry_bloc.dart';
+import 'package:app/src/blocs/edit_entry_bloc.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/widgets/entry_form/entry_form.dart';
 
@@ -26,7 +26,7 @@ class EditEntryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Criar transação'),
+        title: const Text('Editar transação #${bloc.id}'),
         actions: [
           IconButton(
             icon: Icon(Icons.close),
