@@ -5,7 +5,7 @@ import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/widgets/entry_form/entry_form.dart';
 
 class EditEntryScreen extends StatelessWidget {
-  Widget _submitButton(EntryBloc bloc) {
+  Widget _submitButton(EditEntryBloc bloc) {
     return StreamBuilder(
       stream: bloc.isValid,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -27,7 +27,7 @@ class EditEntryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar transação #${bloc.id}'),
+        title: Text('Editar transação\n# ${bloc.id}'),
         actions: [
           IconButton(
             icon: Icon(Icons.close),
