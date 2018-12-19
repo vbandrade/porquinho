@@ -1,5 +1,6 @@
 import 'package:app/src/blocs/create_entry_bloc.dart';
 import 'package:app/src/blocs/provider.dart';
+import 'package:app/src/models/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/widgets/entry_form/src/amount_input.dart';
 import 'package:app/src/widgets/entry_form/src/entry_type_picker.dart';
@@ -8,6 +9,8 @@ import 'package:app/src/widgets/entry_form/src/description_input.dart';
 import 'package:app/src/widgets/entry_form/src/consolidated_input.dart';
 
 class EntryForm extends StatelessWidget {
+  
+
   @override
   Widget build(BuildContext context) {
     const double topSpacing = 13.0;

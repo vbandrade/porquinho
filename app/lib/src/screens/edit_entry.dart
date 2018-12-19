@@ -1,4 +1,5 @@
 import 'package:app/src/blocs/create_entry_bloc.dart';
+import 'package:app/src/models/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/blocs/edit_entry_bloc.dart';
 import 'package:app/src/blocs/provider.dart';
@@ -38,7 +39,14 @@ class EditEntryScreen extends StatelessWidget {
         ],
       ),
       body: ListView(children: [
-        EntryForm(),
+        FutureBuilder<Entry>(
+          future: bloc.futureEntry,
+          builder: (context, snapshot) {
+            print("$snapshot");
+            if (!snapshot.hasData) return CircularProgressIndicator();
+            return EntryForm();
+          },
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: _submitButton(bloc),
