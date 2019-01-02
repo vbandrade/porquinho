@@ -24,7 +24,7 @@ class DateTimeToTimestampSerializerPlugin implements SerializerPlugin {
 
   @override
   Object afterSerialize(Object object, FullType specifiedType) {
-    if (specifiedType.root == DateTime)
+    if (object is int && specifiedType.root == DateTime)
       return Timestamp.fromMicrosecondsSinceEpoch(object);
 
     return object;
@@ -32,7 +32,7 @@ class DateTimeToTimestampSerializerPlugin implements SerializerPlugin {
 
   @override
   Object beforeDeserialize(Object object, FullType specifiedType) {
-    if (object is DateTime && specifiedType.root == DateTime)
+    if (object is Timestamp && specifiedType.root == DateTime)
       return object.microsecondsSinceEpoch;
 
     return object;
