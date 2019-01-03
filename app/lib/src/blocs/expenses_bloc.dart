@@ -15,8 +15,7 @@ import 'package:app/src/models/serializers.dart';
 class ExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();
 
-  Stream<List<GroupedEntries>> get groupedEntries =>
-      _getMonthlyGroupedEntries();
+  Stream<List<GroupedEntries>> get groupedEntries => _getDailyGroupedEntries();
 
   void createEntry() {
     print("FirestoreEntryRepository.createEntry");
@@ -89,6 +88,19 @@ class ExpensesBloc with EntriesMixin {
       List<IGrouping> dailyIterable = Collection(entries)
           .groupBy<Month>((x) => Month.fromDate(x.date))
           .toList();
+
+      dailyIterable.sort((a, b) => a.key.compareTo(b.key));
+
+      return dailyIterable.map((f) {
+        return GroupedEntries(f.key, f.toList());
+      }).toList();
+    });
+  }
+
+  Stream<List<GroupedEntries>> _getDailyGroupedEntries() {
+    return _getEntries().map<List<GroupedEntries>>((List<Entry> entries) {
+      List<IGrouping> dailyIterable =
+          Collection(entries).groupBy<DateTime>((x) => x.date).toList();
 
       dailyIterable.sort((a, b) => a.key.compareTo(b.key));
 
