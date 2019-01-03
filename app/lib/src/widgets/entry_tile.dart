@@ -32,15 +32,17 @@ class EntryTile extends StatelessWidget {
         ),
         subtitle: Wrap(spacing: 5.0, runSpacing: 3.0, children: <Widget>[
           Chip(
+            labelPadding: EdgeInsets.symmetric(horizontal: 1),
             label: Text(
               "${entry.account.name}",
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ),
           Chip(
+            labelPadding: EdgeInsets.symmetric(horizontal: 1),
             label: Text(
               "${entry.category.name}",
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ),
         ]),
