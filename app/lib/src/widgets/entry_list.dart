@@ -1,12 +1,11 @@
-import 'package:app/src/models/month.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:money/money.dart';
 import 'package:app/src/blocs/expenses_bloc.dart';
 import 'package:app/src/widgets/entry_tile.dart';
-import 'package:money/money.dart';
 
 class EntryList extends StatelessWidget {
-  final Stream<List<MonthlyGroupedEntries>> entriesListStream;
+  final Stream<List<GroupedEntries>> entriesListStream;
   final OnEntryTap onEntryTap;
 
   EntryList({this.entriesListStream, this.onEntryTap});
@@ -24,7 +23,7 @@ class EntryList extends StatelessWidget {
           child: StreamBuilder(
               stream: entriesListStream,
               builder: (BuildContext context,
-                  AsyncSnapshot<List<MonthlyGroupedEntries>> snapshot) {
+                  AsyncSnapshot<List<GroupedEntries>> snapshot) {
                 if (!snapshot.hasData)
                   return Center(
                     child: CircularProgressIndicator(),
@@ -34,12 +33,12 @@ class EntryList extends StatelessWidget {
                     child: Text(snapshot.error),
                   );
 
-                List<MonthlyGroupedEntries> _groupedList =
+                List<GroupedEntries> _groupedList =
                     snapshot.data ?? const [];
 
                 final widgetList =
                     List<Widget>.generate(_groupedList.length, (index) {
-                  MonthlyGroupedEntries current = _groupedList[index];
+                  GroupedEntries current = _groupedList[index];
 
                   return entriesListgenerator(current);
                 });
@@ -51,10 +50,10 @@ class EntryList extends StatelessWidget {
     );
   }
 
-  Widget entriesListgenerator(MonthlyGroupedEntries current) {
+  Widget entriesListgenerator(GroupedEntries current) {
     return SliverStickyHeaderBuilder(
       builder: (context, SliverStickyHeaderState state) =>
-          MonthHeader(current.month, current.totalAmount, state),
+          GroupHeader(current.key.toString(), current.totalAmount, state),
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) => EntryTile(current.entries[index], onEntryTap),
@@ -65,12 +64,12 @@ class EntryList extends StatelessWidget {
   }
 }
 
-class MonthHeader extends StatelessWidget {
-  final Month month;
+class GroupHeader extends StatelessWidget {
+  final String title;
   final Money totalAmount;
   final SliverStickyHeaderState state;
 
-  const MonthHeader(this.month, this.totalAmount, this.state);
+  const GroupHeader(this.title, this.totalAmount, this.state);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +80,7 @@ class MonthHeader extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       alignment: Alignment.centerLeft,
       child: Text(
-        "$month => $totalAmount",
+        "$title => $totalAmount",
         style: const TextStyle(color: Colors.white),
       ),
     );

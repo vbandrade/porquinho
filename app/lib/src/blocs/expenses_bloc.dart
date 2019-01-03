@@ -15,7 +15,7 @@ import 'package:app/src/models/serializers.dart';
 class ExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();
 
-  Stream<List<MonthlyGroupedEntries>> get groupedEntries =>
+  Stream<List<GroupedEntries>> get groupedEntries =>
       _getMonthlyGroupedEntries();
 
   void createEntry() {
@@ -84,9 +84,8 @@ class ExpensesBloc with EntriesMixin {
     }).asStream();
   }
 
-  Stream<List<MonthlyGroupedEntries>> _getMonthlyGroupedEntries() {
-    return _getEntries()
-        .map<List<MonthlyGroupedEntries>>((List<Entry> entries) {
+  Stream<List<GroupedEntries>> _getMonthlyGroupedEntries() {
+    return _getEntries().map<List<GroupedEntries>>((List<Entry> entries) {
       List<IGrouping> dailyIterable = Collection(entries)
           .groupBy<Month>((x) => Month.fromDate(x.date))
           .toList();
@@ -94,17 +93,17 @@ class ExpensesBloc with EntriesMixin {
       dailyIterable.sort((a, b) => a.key.compareTo(b.key));
 
       return dailyIterable.map((f) {
-        return MonthlyGroupedEntries(f.key, f.toList());
+        return GroupedEntries(f.key, f.toList());
       }).toList();
     });
   }
 }
 
-class MonthlyGroupedEntries {
-  final Month month;
+class GroupedEntries {
+  final Object key;
   final List<Entry> entries;
 
-  MonthlyGroupedEntries(this.month, this.entries);
+  GroupedEntries(this.key, this.entries);
 
   Money get totalAmount => entries.fold<Money>(
       Money.fromDouble(0.0, Currency.fromCode("BRL")),
