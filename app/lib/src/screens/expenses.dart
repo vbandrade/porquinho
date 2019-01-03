@@ -7,8 +7,6 @@ import 'package:app/src/widgets/entry_list.dart';
 enum GroupedBy { day, month }
 
 class ExpensesScreen extends StatefulWidget {
-  final GroupedBy groupedBy = GroupedBy.month;
-
   @override
   ExpensesScreenState createState() {
     return new ExpensesScreenState();
@@ -16,6 +14,8 @@ class ExpensesScreen extends StatefulWidget {
 }
 
 class ExpensesScreenState extends State<ExpensesScreen> {
+  GroupedBy _groupedBy = GroupedBy.month;
+
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<ExpensesBloc>(context);
@@ -34,10 +34,22 @@ class ExpensesScreenState extends State<ExpensesScreen> {
             color: Colors.white,
             onPressed: bloc.createEntry,
           ),
+          IconButton(
+            icon: Icon(Icons.calendar_today),
+            color: Colors.white,
+            onPressed: () {
+              setState(() {
+                if (_groupedBy == GroupedBy.day)
+                  _groupedBy = GroupedBy.month;
+                else
+                  _groupedBy = GroupedBy.day;
+              });
+            },
+          ),
         ],
       ),
       body: EntryList(
-        entriesListStream: widget.groupedBy == GroupedBy.day
+        entriesListStream: _groupedBy == GroupedBy.day
             ? bloc.dailyGroupedEntries
             : bloc.monthlyGroupedEntries,
         onEntryTap: (Entry entry) {
