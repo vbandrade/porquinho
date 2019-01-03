@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/expenses_bloc.dart';
+import 'package:app/src/widgets/left_drawer.dart';
 import 'package:app/src/widgets/entry_list.dart';
 
 enum GroupedBy { day, month }
@@ -48,6 +49,7 @@ class ExpensesScreenState extends State<ExpensesScreen> {
           ),
         ],
       ),
+      drawer: SideDrawer(),
       body: EntryList(
         entriesListStream: _groupedBy == GroupedBy.day
             ? bloc.dailyGroupedEntries
