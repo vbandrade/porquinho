@@ -1,19 +1,15 @@
-import 'package:app/src/screens/edit_entry.dart';
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:app/src/blocs/create_entry_bloc.dart';
 import 'package:app/src/blocs/edit_entry_bloc.dart';
 import 'package:app/src/blocs/provider.dart';
-import 'package:app/src/blocs/expenses_bloc.dart';
-import 'package:app/src/screens/expenses.dart';
+import 'package:app/src/screens/edit_entry.dart';
+import 'package:app/src/screens/home.dart';
 import 'package:app/src/screens/create_entry.dart';
 
 var homeHandler =
     Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-  return Provider<ExpensesBloc>(
-    child: ExpensesScreen(),
-    bloc: ExpensesBloc(),
-  );
+  return HomeScreen();
 });
 
 var createEntryHandler =
@@ -27,7 +23,7 @@ var createEntryHandler =
 var editEntryHandler =
     Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
   String id = params["id"][0];
-  
+
   return Provider<EntryBloc>(
     child: EditEntryScreen(),
     bloc: EditEntryBloc(id),
