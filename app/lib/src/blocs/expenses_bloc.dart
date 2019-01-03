@@ -15,7 +15,10 @@ import 'package:app/src/models/serializers.dart';
 class ExpensesBloc with EntriesMixin {
   Stream<List<Entry>> get entries => _getEntries();
 
-  Stream<List<GroupedEntries>> get groupedEntries => _getDailyGroupedEntries();
+  Stream<List<GroupedEntries>> get dailyGroupedEntries =>
+      _getDailyGroupedEntries();
+  Stream<List<GroupedEntries>> get monthlyGroupedEntries =>
+      _getMonthlyGroupedEntries();
 
   void createEntry() {
     print("FirestoreEntryRepository.createEntry");
