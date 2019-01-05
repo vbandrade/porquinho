@@ -1,3 +1,4 @@
+import 'package:app/src/models/entry_type.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:queries/collections.dart';
@@ -60,8 +61,16 @@ class HomeBloc {
     }).asStream();
   }
 
-  Money combine(Money previousValue, Entry element) {
-    return previousValue + element.amount;
+  Money combine(Money previousValue, Entry entry) {
+    if ((entry.type == EntryType.credit) ||
+        (entry.type == EntryType.transfer_in))
+      return previousValue + entry.amount;
+
+    if ((entry.type == EntryType.debit) ||
+        (entry.type == EntryType.transfer_out))
+      return previousValue - entry.amount;
+
+    return previousValue;
   }
 }
 
