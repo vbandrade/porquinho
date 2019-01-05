@@ -19,14 +19,19 @@ class HomeBloc {
 
   Stream<List<AccountBalance>> _getAccountBalances() {
     return _getEntries().map<List<AccountBalance>>((List<Entry> entries) {
-      List<IGrouping> dailyIterable = Collection(entries)
+      List<IGrouping<String, Entry>> dailyIterable = Collection(entries)
           .groupBy<String>((Entry x) => x.account.name)
           .toList();
 
       return dailyIterable.map((f) {
+        final entryList = f.toList();
+
+        Money amount = entryList.fold<Money>(
+            Money.fromDouble(0, Currency.fromCode("BRL")), combine);
+
         return AccountBalance(
           f.key,
-          Money.fromDouble(0, Currency.fromCode("BRL")),
+          amount,
         );
       }).toList();
     });
@@ -52,6 +57,10 @@ class HomeBloc {
         }
       }).toList();
     }).asStream();
+  }
+
+  Money combine(Money previousValue, Entry element) {
+    return previousValue + element.amount;
   }
 }
 
