@@ -40,6 +40,7 @@ class HomeBloc {
   Stream<List<Entry>> _getEntries() {
     return Firestore.instance
         .collection("entries")
+        .where("date", isLessThanOrEqualTo: DateTime.now())
         .orderBy("date")
         .getDocuments()
         .then((snapshot) {
