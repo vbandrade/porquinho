@@ -26,6 +26,7 @@ dependencies:
   built_collection: 4.1.0
 
   flutter_sticky_header: 0.3.4
+  injector: 1.0.4
 
   money:
     git:
