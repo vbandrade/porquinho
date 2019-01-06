@@ -90,30 +90,27 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       drawer: SideDrawer(),
-      body: Container(
-        color: Colors.green,
-        child: StreamBuilder<List<AccountBalance>>(
-          stream: bloc.accountBalances,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<AccountBalance>> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  AccountBalance ab = snapshot.data[index];
-                  return ListTile(
-                    title: Text("${ab.acountName}"),
-                    leading: Icon(Icons.calendar_today),
-                    trailing: Text("${ab.amount}"),
-                    onTap: () {},
-                  );
-                },
-              );
-            }
+      body: StreamBuilder<List<AccountBalance>>(
+        stream: bloc.accountBalances,
+        builder: (BuildContext context,
+            AsyncSnapshot<List<AccountBalance>> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                AccountBalance ab = snapshot.data[index];
+                return ListTile(
+                  title: Text("${ab.acountName}"),
+                  leading: Icon(Icons.calendar_today),
+                  trailing: Text("${ab.amount}"),
+                  onTap: () {},
+                );
+              },
+            );
+          }
 
-            return Container();
-          },
-        ),
+          return Container();
+        },
       ),
     );
   }
