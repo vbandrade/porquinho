@@ -1,14 +1,13 @@
+import 'package:app/src/blocs/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:app/src/resources/injector.dart';
-import 'package:app/src/resources/repository.dart';
 import 'package:app/src/blocs/home_bloc.dart';
 import 'package:app/src/widgets/left_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
-  final HomeBloc bloc = HomeBloc(injector.getDependency<ReactiveRepository>());
-
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<HomeBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
