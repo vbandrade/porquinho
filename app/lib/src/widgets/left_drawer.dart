@@ -13,9 +13,16 @@ class SideDrawer extends StatelessWidget {
             currentAccountPicture: CircleAvatar(),
           ),
           ListTile(
-            title: Text("Transações"),
+            title: Text("Pagina Inicial"),
             leading: Icon(Icons.inbox),
             onTap: () {},
+          ),
+          ListTile(
+            title: Text("Transações"),
+            leading: Icon(Icons.inbox),
+            onTap: () {
+              Navigator.pushNamed(context, "/entries")
+            },
           ),
           ListTile(
             title: Text("Investimentos"),

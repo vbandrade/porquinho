@@ -1,4 +1,6 @@
+import 'package:app/src/blocs/expenses_bloc.dart';
 import 'package:app/src/blocs/home_bloc.dart';
+import 'package:app/src/screens/expenses.dart';
 import 'package:flutter/material.dart';
 import 'package:fluro/fluro.dart';
 import 'package:app/src/blocs/create_entry_bloc.dart';
@@ -15,6 +17,14 @@ var homeHandler =
   return Provider<HomeBloc>(
     child: HomeScreen(),
     bloc: HomeBloc(injector.getDependency<ReactiveRepository>()),
+  );
+});
+
+var listEntriesHandler =
+    Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+  return Provider<ExpensesBloc>(
+    child: ExpensesScreen(),
+    bloc: ExpensesBloc(),
   );
 });
 
@@ -42,6 +52,11 @@ void setup(Router router) {
   router.define(
     '/',
     handler: homeHandler,
+  );
+
+  router.define(
+    '/entries',
+    handler: listEntriesHandler,
   );
 
   router.define(
