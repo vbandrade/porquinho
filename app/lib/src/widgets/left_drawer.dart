@@ -21,7 +21,7 @@ class SideDrawer extends StatelessWidget {
             title: Text("Transações"),
             leading: Icon(Icons.inbox),
             onTap: () {
-              Navigator.pushNamed(context, "/entries")
+              Navigator.pushNamed(context, "/entries");
             },
           ),
           ListTile(
