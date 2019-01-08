@@ -33,6 +33,9 @@ class AccountBalanceList extends StatelessWidget {
               ),
             ],
           ),
+          onTap: () {
+            Navigator.of(context).pushNamed("/entries");
+          },
         ),
         Expanded(
           child: ListView.builder(
