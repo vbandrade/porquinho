@@ -13,15 +13,10 @@ class SideDrawer extends StatelessWidget {
             currentAccountPicture: CircleAvatar(),
           ),
           ListTile(
-            title: Text("Pagina Inicial"),
-            leading: Icon(Icons.inbox),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text("Transações"),
+            title: Text("Contas"),
             leading: Icon(Icons.inbox),
             onTap: () {
-              Navigator.pushNamed(context, "/entries");
+              Navigator.pushReplacementNamed(context, "/");
             },
           ),
           ListTile(
