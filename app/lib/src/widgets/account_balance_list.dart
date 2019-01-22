@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:money/money.dart';
 import 'package:app/src/blocs/home_bloc.dart';
 
+typedef OnAccountTap = void Function();
+
 class AccountBalanceList extends StatelessWidget {
   final List<AccountBalance> list;
   final Money totalBalance;
+  final OnAccountTap onAccountTap;
 
-  AccountBalanceList(this.list)
+  AccountBalanceList(this.list, this.onAccountTap)
       : totalBalance = list.fold<Money>(
             Money.fromDouble(0.0, Currency.fromCode("BRL")),
             (Money previousValue, AccountBalance element) =>
@@ -47,7 +50,9 @@ class AccountBalanceList extends StatelessWidget {
                 title: Text("${ab.acountName}"),
                 leading: Icon(Icons.calendar_today),
                 trailing: Text("${ab.amount}"),
-                onTap: () {},
+                onTap: () {
+                  onAccountTap();
+                },
               );
             },
           ),

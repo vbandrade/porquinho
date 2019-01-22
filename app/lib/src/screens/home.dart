@@ -1,7 +1,7 @@
-import 'package:app/src/blocs/provider.dart';
-import 'package:app/src/widgets/account_balance_list.dart';
 import 'package:flutter/material.dart';
+import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/home_bloc.dart';
+import 'package:app/src/widgets/account_balance_list.dart';
 import 'package:app/src/widgets/left_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,12 +25,18 @@ class HomeScreen extends StatelessWidget {
         builder: (BuildContext context,
             AsyncSnapshot<List<AccountBalance>> snapshot) {
           if (snapshot.hasData) {
-            return AccountBalanceList(snapshot.data);
+            return AccountBalanceList(snapshot.data, () {
+              onAccountTap(context);
+            });
           }
 
           return Container();
         },
       ),
     );
+  }
+
+  void onAccountTap(BuildContext context) {
+    Navigator.pushNamed(context, "/entries");
   }
 }
