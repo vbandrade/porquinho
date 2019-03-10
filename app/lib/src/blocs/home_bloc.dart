@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/models/entry_type.dart';
 import 'package:app/src/resources/repository.dart';

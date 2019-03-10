@@ -50,7 +50,7 @@ class CreateEntryBloc with AmountValidator implements EntryBloc {
   @override
   void save() {
     print("CreateEntryBloc.save");
-    print("date: ${_date}");
+    print("date: $_date");
 
     Random r = new Random();
 

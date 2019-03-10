@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/models/serializers.dart';

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:app/src/resources/repository.dart';
 import 'package:injector/injector.dart';
 
