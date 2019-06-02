@@ -69,3 +69,5 @@ void setup(Router router) {
     handler: editEntryHandler,
   );
 }
+
+enum Screens { home, expenses, investments }

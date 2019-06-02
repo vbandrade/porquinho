@@ -1,3 +1,4 @@
+import 'package:app/src/screens/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/home_bloc.dart';
@@ -19,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: SideDrawer(),
+      drawer: SideDrawer(Screens.expenses),
       body: StreamBuilder<List<AccountBalance>>(
         stream: bloc.accountBalances,
         builder: (BuildContext context,

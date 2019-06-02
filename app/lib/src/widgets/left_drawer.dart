@@ -1,8 +1,13 @@
+import 'package:app/src/screens/routes.dart';
 import 'package:flutter/material.dart';
 
 class SideDrawer extends StatelessWidget {
+  final Screens _currentScreen;
+  SideDrawer(this._currentScreen);
+
   @override
   Widget build(BuildContext context) {
+    TextStyle style = TextStyle(fontWeight: FontWeight.bold);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.all(0.0),
@@ -13,7 +18,10 @@ class SideDrawer extends StatelessWidget {
             currentAccountPicture: CircleAvatar(),
           ),
           ListTile(
-            title: Text("Contas"),
+            title: Text(
+              "Contas",
+              style: _currentScreen == Screens.expenses ? style : null,
+            ),
             leading: Icon(Icons.inbox),
             onTap: () {
               Navigator.pushReplacementNamed(context, "/");
