@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app/src/models/entry.dart';
 import 'package:app/src/blocs/provider.dart';
 import 'package:app/src/blocs/expenses_bloc.dart';
+import 'package:app/src/screens/routes.dart';
 import 'package:app/src/widgets/left_drawer.dart';
 import 'package:app/src/widgets/entry_list.dart';
 
@@ -49,7 +50,7 @@ class ExpensesScreenState extends State<ExpensesScreen> {
           ),
         ],
       ),
-      drawer: SideDrawer(),
+      drawer: SideDrawer(Screens.expense_list),
       body: EntryList(
         entriesListStream: _groupedBy == GroupedBy.day
             ? bloc.dailyGroupedEntries

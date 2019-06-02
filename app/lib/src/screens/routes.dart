@@ -70,4 +70,9 @@ void setup(Router router) {
   );
 }
 
-enum Screens { home, expenses, investments }
+enum Screens {
+  home,
+  expenses,
+  expense_list,
+  investments,
+}

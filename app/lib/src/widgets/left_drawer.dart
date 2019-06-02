@@ -7,7 +7,7 @@ class SideDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(fontWeight: FontWeight.bold);
+    TextStyle style = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.all(0.0),
@@ -28,7 +28,10 @@ class SideDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text("Investimentos"),
+            title: Text(
+              "Investimentos",
+              style: _currentScreen == Screens.investments ? style : null,
+            ),
             leading: Icon(Icons.calendar_today),
             onTap: () {},
           ),
