@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 class SideDrawer extends StatelessWidget {
   final Screens _currentScreen;
   SideDrawer(this._currentScreen);
+  final TextStyle _selectedStyle =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
 
   @override
   Widget build(BuildContext context) {
-    TextStyle style = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.all(0.0),
@@ -20,17 +21,30 @@ class SideDrawer extends StatelessWidget {
           ListTile(
             title: Text(
               "Contas",
-              style: _currentScreen == Screens.expenses ? style : null,
+              style: _currentScreen == Screens.expenses ? _selectedStyle : null,
             ),
             leading: Icon(Icons.inbox),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, "/");
-            },
+            onTap: _currentScreen != Screens.expenses
+                ? () {
+                    Navigator.pushReplacementNamed(context, "/");
+                  }
+                : null,
+          ),
+          FlatButton.icon(
+            icon: Icon(Icons.list),
+            label: Text(
+              "Lista de transações",
+              style: _currentScreen == Screens.expense_list
+                  ? _selectedStyle
+                  : null,
+            ),
+            onPressed: () {},
           ),
           ListTile(
             title: Text(
               "Investimentos",
-              style: _currentScreen == Screens.investments ? style : null,
+              style:
+                  _currentScreen == Screens.investments ? _selectedStyle : null,
             ),
             leading: Icon(Icons.calendar_today),
             onTap: () {},
