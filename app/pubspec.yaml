@@ -16,16 +16,16 @@ dependencies:
   flutter:
     sdk: flutter
 
-  fluro: 1.4.0
-  cloud_firestore: "0.11.0+2"
-  intl: 0.15.7
+  fluro: 1.5.0
+  cloud_firestore: "0.12.5+2"
+  intl: 0.15.8
   rxdart: 0.22.0
   queries: 0.1.12
 
   built_value: 6.5.0
   built_collection: 4.2.2
 
-  flutter_sticky_header: 0.3.4
+  flutter_sticky_header: 0.3.2
   injector: 1.0.8
 
   money:
